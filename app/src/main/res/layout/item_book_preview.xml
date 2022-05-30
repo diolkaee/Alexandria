@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="book"
+            type="com.diolkaee.alexandria.business.book.Book" />
+    </data>
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="250dp"
+            android:layout_gravity="center"
+            android:contentDescription="@{book.title}"
+            android:cropToPadding="true"
+            android:src="@drawable/ic_launcher_background"
+            android:visibility="@{book.thumbnailUrl != null ? View.VISIBLE : View.GONE}"
+            app:loadUrl="@{book.thumbnailUrl}" />
+
+        <LinearLayout
+            android:layout_width="150dp"
+            android:layout_height="250dp"
+            android:layout_gravity="center"
+            android:paddingHorizontal="@dimen/book_preview_padding"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:visibility="@{book.thumbnailUrl == null ? View.VISIBLE : View.GONE}">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center_horizontal"
+                android:text="@{book.author}"
+                tools:text="Haruki Murakami" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:gravity="center_horizontal"
+                android:text="@{book.title}"
+                tools:text="A Wild Sheep Chase" />
+        </LinearLayout>
+    </FrameLayout>
+</layout>

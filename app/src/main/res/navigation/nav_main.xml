@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/ShelfFragment">
+
+    <fragment
+        android:id="@+id/ShelfFragment"
+        android:name="com.diolkaee.alexandria.ui.shelf.ShelfFragment"
+        android:label="@string/shelf_fragment_label"
+        tools:layout="@layout/fragment_shelf">
+        <action
+            android:id="@+id/shelfToScan"
+            app:destination="@id/ScanActivity" />
+    </fragment>
+
+    <activity
+        android:id="@+id/ScanActivity"
+        android:name="com.diolkaee.alexandria.ui.scan.ScanActivity"
+        android:label="@string/activity_scan_label"
+        tools:layout="@layout/activity_scan">
+
+    </activity>
+</navigation>

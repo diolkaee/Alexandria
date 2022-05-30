@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Alexandria</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="shelf_fragment_label">Shelf</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello shelf fragment</string>
+    <string name="shelf__fab__content_description">add Book</string>
+    <string name="shelf__sort__content_description">set sorting</string>
+    <string name="activity_scan_label">Scan</string>
+</resources>
