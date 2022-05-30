@@ -6,10 +6,24 @@ import com.diolkaee.alexandria.data.networking.IdentifierData
 import com.diolkaee.alexandria.data.networking.retrieveBook
 import com.diolkaee.alexandria.data.persistence.BookDao
 import com.diolkaee.alexandria.data.persistence.BookEntity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import retrofit2.HttpException
 import java.net.HttpURLConnection.HTTP_NOT_FOUND
 
-class BookRepository(private val apiService: ApiService, private val bookDao: BookDao) {
+class BookRepository(
+    private val apiService: ApiService,
+    private val bookDao: BookDao,
+    scope: CoroutineScope
+) {
+    val archive: StateFlow<List<Book>> = bookDao
+        .getAll()
+        .map { archive -> archive.map { bookEntity ->  bookEntity.toDomainObject() } }
+        .stateIn(scope, SharingStarted.Lazily, emptyList())
+
     suspend fun submitBook(book: Book) {
         bookDao.insert(book.toEntity())
     }
@@ -22,8 +36,6 @@ class BookRepository(private val apiService: ApiService, private val bookDao: Bo
             else -> throw e
         }
     }
-
-    suspend fun fetchArchive() = bookDao.getAll().map { it.toDomainObject() }
 }
 
 // TODO Improve entity mapping
@@ -51,7 +63,7 @@ private fun BookEntity.toDomainObject() = Book(
     thumbnailUrl = thumbnailUrl
 )
 
-// ISBN Format: 978-0-00000-000-0
+// ISBN Format: 978-X-XXXXX-XXX-X
 private fun Long.formatIsbn(): String {
     return toString().apply { "${slice(0..2)}-${take(3)}-${slice(4..8)}-${slice(9..11)}-${take(12)}" }
 }

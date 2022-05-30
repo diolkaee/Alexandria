@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.diolkaee.alexandria.BuildConfig
 import com.diolkaee.alexandria.business.book.Book
 import com.diolkaee.alexandria.business.book.BookRepository
 import kotlinx.coroutines.launch
@@ -25,7 +24,7 @@ class ShelfViewModel(private val bookRepository: BookRepository) : ViewModel() {
     val sorting: LiveData<SORTING> = _sorting
 
     init {
-        fetchBooks()
+        observeArchive()
     }
 
     fun setHighlightedBookIndex(newValue: Int) {
@@ -48,9 +47,11 @@ class ShelfViewModel(private val bookRepository: BookRepository) : ViewModel() {
             else SORTING.ALPHABETICAL_TITLE
     }
 
-    private fun fetchBooks() {
+    private fun observeArchive() {
         viewModelScope.launch {
-            _books.value = bookRepository.fetchArchive()
+            bookRepository.archive.collect {
+                _books.value = it
+            }
         }
     }
 }
