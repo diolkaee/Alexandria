@@ -9,7 +9,7 @@ val EXAMPLE_BOOKS = listOf(
         author = "Oscar Wilde",
         title = "The picture of Dorian Gray",
         publisher = "Penguins Books",
-        publicationYear = 2003,
+        publicationYear = "2003",
         pageCount = 304,
     ),
     Book(
@@ -18,7 +18,7 @@ val EXAMPLE_BOOKS = listOf(
         author = "Mary Shelley",
         title = "Frankenstein",
         publisher = "Penguins Books",
-        publicationYear = 2020,
+        publicationYear = "2020",
         pageCount = 96,
         thumbnailUrl = "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1631088473l/35031085._SY475_.jpg"
     ),
@@ -28,7 +28,7 @@ val EXAMPLE_BOOKS = listOf(
         author = "Robert Louis Stevenson",
         title = "The strange case of Dr. Jekyll and Mr. Hyde",
         publisher = "Penguins Books",
-        publicationYear = 2019,
+        publicationYear = "2019",
         pageCount = 110,
     ),
     Book(
@@ -37,7 +37,7 @@ val EXAMPLE_BOOKS = listOf(
         author = "Franz Kafka",
         title = "The metamorphosis",
         publisher = "Penguins Books",
-        publicationYear = 1972,
+        publicationYear = "1972",
         pageCount = 201,
     ),
     Book(
@@ -46,7 +46,7 @@ val EXAMPLE_BOOKS = listOf(
         author = "F. Scott Fitzgerald",
         title = "The great Gatsby",
         publisher = "Penguins Books",
-        publicationYear = 2021,
+        publicationYear = "2021",
         pageCount = 114,
         thumbnailUrl = "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1490528560l/4671._SY475_.jpg"
     )
@@ -57,8 +57,9 @@ data class Book(
     val isbn: String,
     val author: String,
     val title: String,
-    val publicationYear: Int,
+    val publicationYear: String,
     val publisher: String,
     val pageCount: Int?,
-    val thumbnailUrl: String? = null
+    val thumbnailUrl: String? = null,
+    val read: Boolean = false
 )

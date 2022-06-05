@@ -4,7 +4,7 @@
     <data>
 
         <variable
-            name="books"
+            name="searchResults"
             type="java.util.List&lt;com.diolkaee.alexandria.business.book.Book&gt;" />
 
         <variable
@@ -25,10 +25,10 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/bookList"
+            android:id="@+id/book_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:books="@{books}"
+            app:bookList="@{searchResults}"
             app:onBookClick="@{onBookClick}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintStart_toStartOf="parent"

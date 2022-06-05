@@ -11,6 +11,7 @@ import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.diolkaee.alexandria.R
 import com.diolkaee.alexandria.business.book.Book
+import com.diolkaee.alexandria.common.list.BookClickListener
 import kotlin.math.abs
 
 @BindingAdapter("books")
@@ -18,7 +19,7 @@ fun ViewPager2.setBooks(books: List<Book>) {
     val adapter = this.adapter as? BookPreviewAdapter ?: BookPreviewAdapter().also {
         this.adapter = it
 
-        // Render adjacent cards visible
+        // Render adjacent books visible
         offscreenPageLimit = 1
         val multiPageTransformer = createMultiPageTransformer(resources)
         val shrinkTransformer = createShrinkTransformer()
@@ -67,4 +68,13 @@ private class HorizontalMarginDecoration(context: Context, @DimenRes horizontalM
         outRect.left = horizontalMarginInPx
         outRect.right = horizontalMarginInPx
     }
+}
+
+@BindingAdapter("bookGrid", "onBookClick")
+fun RecyclerView.setBookGrid(books: List<Book>, onBookClick: BookClickListener) {
+    val adapter = this.adapter as? BookGridAdapter ?: BookGridAdapter(onBookClick).also {
+        this.adapter = it
+    }
+
+    adapter.submitList(books)
 }

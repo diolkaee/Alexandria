@@ -4,6 +4,8 @@
     <dimen name="viewpager_book_peek_size">96dp</dimen>
     <dimen name="viewpager_book_margin">16dp</dimen>
     <dimen name="book_preview_padding">16dp</dimen>
-    <dimen name="card_padding">16dp</dimen>
+    <dimen name="card_padding">8dp</dimen>
     <dimen name="list_item_margin">4dp</dimen>
+    <dimen name="book_preview_height">200dp</dimen>
+    <dimen name="book_preview_width">150dp</dimen>
 </resources>

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -11,6 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.diolkaee.alexandria.databinding.FragmentShelfBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
+private const val LOG_TAG = "ShelfFragment"
 
 class ShelfFragment : Fragment() {
     private lateinit var binding: FragmentShelfBinding
@@ -40,8 +43,11 @@ class ShelfFragment : Fragment() {
         viewModel.books.observe(viewLifecycleOwner) {
             binding.books = it
         }
-        viewModel.highlightedBookIndex.observe(viewLifecycleOwner) {
-            binding.selectedBookIndex = it
+        viewModel.scrollPosition.observe(viewLifecycleOwner) {
+            binding.scrollPosition = it
+        }
+        viewModel.layout.observe(viewLifecycleOwner) {
+            binding.layout = it
         }
     }
 
@@ -61,9 +67,19 @@ class ShelfFragment : Fragment() {
             }
         })
 
-        sortButton.setOnClickListener { viewModel.toggleSorting() }
+        binding.search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?) = true
 
-        addButton.setOnClickListener { navigateToScan() }
+            override fun onQueryTextChange(newText: String?): Boolean {
+                viewModel.setQuery(newText)
+                return true
+            }
+        })
+
+        setOnSortBooks { viewModel.toggleSorting() }
+        setOnAddBook { navigateToScan() }
+        setOnChangeLayout { viewModel.advanceLayout() }
+        setOnViewDetails { viewModel.navigateToDetails(it) }
     }
 
     private fun teardownEvents() = with(binding) {

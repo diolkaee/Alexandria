@@ -8,8 +8,8 @@ fun interface BookClickListener {
     operator fun invoke(book: Book)
 }
 
-@BindingAdapter("books", "onBookClick", requireAll = false)
-fun RecyclerView.setBooks(books: List<Book>, onBookClick: BookClickListener?) {
+@BindingAdapter("bookList", "onBookClick", requireAll = false)
+fun RecyclerView.setBookList(books: List<Book>, onBookClick: BookClickListener?) {
     // Cannot use default parameters in DataBinding, so shadowing it is
     val onBookClick = onBookClick ?: BookClickListener { }
 
@@ -17,5 +17,5 @@ fun RecyclerView.setBooks(books: List<Book>, onBookClick: BookClickListener?) {
         this.adapter = it
     }
 
-    adapter.submitList(books)
+    adapter.updateList(books)
 }

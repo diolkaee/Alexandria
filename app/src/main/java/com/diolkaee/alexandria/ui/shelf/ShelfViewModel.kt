@@ -4,47 +4,74 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.diolkaee.alexandria.business.BuildConfig
 import com.diolkaee.alexandria.business.book.Book
 import com.diolkaee.alexandria.business.book.BookRepository
+import com.diolkaee.alexandria.business.book.EXAMPLE_BOOKS
+import com.diolkaee.alexandria.common.filter
+import com.diolkaee.alexandria.common.next
+import com.diolkaee.alexandria.common.sortBy
 import kotlinx.coroutines.launch
 
-enum class SORTING {
+enum class Sorting {
     ALPHABETICAL_TITLE,
-    ALPHABETICAL_AUTHOR
+    ALPHABETICAL_AUTHOR,
+}
+
+enum class ShelfLayout {
+    LIST,
+    PREVIEW,
+    GRID,
 }
 
 class ShelfViewModel(private val bookRepository: BookRepository) : ViewModel() {
+    private val _bookFilter = MutableLiveData<(Book?) -> Boolean> { true }
+
     private val _books = MutableLiveData<List<Book>>(emptyList())
-    val books: LiveData<List<Book>> = _books
+    val books: LiveData<List<Book>> = _books.filter(_bookFilter).sortBy { it.author }
 
-    private val _highlightedBookIndex = MutableLiveData(0)
-    val highlightedBookIndex: LiveData<Int> = _highlightedBookIndex
+    private val _scrollPosition = MutableLiveData(0)
+    val scrollPosition: LiveData<Int> = _scrollPosition
 
-    private val _sorting = MutableLiveData(SORTING.ALPHABETICAL_TITLE)
-    val sorting: LiveData<SORTING> = _sorting
+    // TODO Add functionality
+    private val _sorting = MutableLiveData(Sorting.ALPHABETICAL_TITLE)
+    val sorting: LiveData<Sorting> = _sorting
+
+    private val _layout = MutableLiveData(ShelfLayout.LIST)
+    val layout: LiveData<ShelfLayout> = _layout
 
     init {
         observeArchive()
+        if (BuildConfig.DEBUG) viewModelScope.launch {
+            EXAMPLE_BOOKS.forEach { bookRepository.archiveBook(it) }
+        }
     }
 
     fun setHighlightedBookIndex(newValue: Int) {
-        _highlightedBookIndex.value = newValue
+        _scrollPosition.value = newValue
     }
 
     fun toggleSorting() {
-        _books.value = books.value?.sortedBy {
-            when (sorting.value) {
-                SORTING.ALPHABETICAL_TITLE -> it.title
-                SORTING.ALPHABETICAL_AUTHOR -> it.author
-                else -> {
-                    it.title
-                } // TODO Replace with actual logic
-            }
+        _sorting.value = sorting.value?.next()
+    }
+
+    fun advanceLayout() {
+        _layout.value = layout.value?.next()
+    }
+
+    fun setQuery(query: String?) {
+        val searchFilter = if (query.isNullOrBlank()) {
+            { true }
+        } else { book: Book? -> book?.contains(query) ?: true }
+
+        _bookFilter.value = searchFilter
+    }
+
+    fun navigateToDetails(book: Book) {
+        // TODO Change to navigation
+        viewModelScope.launch {
+            bookRepository.archiveBook(book.copy(read = !book.read))
         }
-        // TODO Replace with actual logic
-        _sorting.value =
-            if (_sorting.value == SORTING.ALPHABETICAL_TITLE) SORTING.ALPHABETICAL_AUTHOR
-            else SORTING.ALPHABETICAL_TITLE
     }
 
     private fun observeArchive() {
@@ -55,3 +82,8 @@ class ShelfViewModel(private val bookRepository: BookRepository) : ViewModel() {
         }
     }
 }
+
+// TODO Implement fuzzy search
+private fun Book.contains(searchQuery: String) =
+    this.author.contains(searchQuery, ignoreCase = true) ||
+            this.title.contains(searchQuery, ignoreCase = true)

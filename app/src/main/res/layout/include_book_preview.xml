@@ -12,12 +12,13 @@
     </data>
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="wrap_content"
+        android:background="@color/white"
+        android:layout_height="wrap_content">
 
         <ImageView
-            android:layout_width="150dp"
-            android:layout_height="250dp"
+            android:layout_width="@dimen/book_preview_width"
+            android:layout_height="@dimen/book_preview_height"
             android:layout_gravity="center"
             android:contentDescription="@{book.title}"
             android:cropToPadding="true"
@@ -26,11 +27,11 @@
             app:loadUrl="@{book.thumbnailUrl}" />
 
         <LinearLayout
-            android:layout_width="150dp"
-            android:layout_height="250dp"
+            android:layout_width="@dimen/book_preview_width"
+            android:layout_height="@dimen/book_preview_height"
             android:layout_gravity="center"
             android:paddingHorizontal="@dimen/book_preview_padding"
-            android:background="@color/white"
+            android:background="@color/grey"
             android:orientation="vertical"
             android:visibility="@{book.thumbnailUrl == null ? View.VISIBLE : View.GONE}">
 

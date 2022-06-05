@@ -4,15 +4,28 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.1503623188405797" />
+        <entry key="app/src/main/res/drawable/bar.xml" value="0.2195" />
+        <entry key="app/src/main/res/drawable/bg_white_rounded.xml" value="0.2195" />
+        <entry key="app/src/main/res/drawable/ic_awesome.xml" value="0.189" />
+        <entry key="app/src/main/res/drawable/ic_check.xml" value="0.189" />
+        <entry key="app/src/main/res/drawable/ic_read_indicator.xml" value="0.188" />
+        <entry key="app/src/main/res/drawable/ic_shelf.xml" value="0.2195" />
         <entry key="app/src/main/res/drawable/ic_sort.xml" value="0.166" />
+        <entry key="app/src/main/res/drawable/shelf.xml" value="0.2195" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1828774062816616" />
         <entry key="app/src/main/res/layout/activity_scan.xml" value="0.19479166666666667" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.19479166666666667" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.19479166666666667" />
         <entry key="app/src/main/res/layout/fragment_scan.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_shelf.xml" value="0.24514200298953662" />
+        <entry key="app/src/main/res/layout/include_book_preview.xml" value="0.18072916666666666" />
+        <entry key="app/src/main/res/layout/item_author.xml" value="0.375" />
         <entry key="app/src/main/res/layout/item_book.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_book_cover.xml" value="0.22777777777777777" />
+        <entry key="app/src/main/res/layout/item_book_cover_shelf.xml" value="0.375" />
         <entry key="app/src/main/res/layout/item_book_preview.xml" value="0.19479166666666667" />
+        <entry key="app/src/main/res/layout/item_book_preview_page.xml" value="0.1796875" />
+        <entry key="app/src/main/res/layout/item_book_preview_shelf.xml" value="0.1796875" />
       </map>
     </option>
   </component>

@@ -8,8 +8,9 @@ data class BookEntity(
     @PrimaryKey val isbn: Long,
     val author: String,
     val title: String,
-    val publicationYear: Int,
+    val publicationYear: String,
     val publisher: String,
     val pageCount: Int?,
-    val thumbnailUrl: String?
+    val thumbnailUrl: String?,
+    val read: Boolean
 )

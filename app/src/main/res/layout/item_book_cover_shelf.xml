@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="book"
+            type="com.diolkaee.alexandria.business.book.Book" />
+
+        <variable
+            name="onBookClick"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <FrameLayout
+            android:id="@+id/cover"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{onBookClick}"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <include
+                layout="@layout/include_book_preview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:book="@{book}" />
+        </FrameLayout>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_shelf"
+            app:layout_constraintEnd_toEndOf="@id/cover"
+            app:layout_constraintStart_toStartOf="@id/cover"
+            app:layout_constraintTop_toBottomOf="@id/cover"
+            app:tint="@color/design_default_color_secondary" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -6,25 +6,20 @@ import com.diolkaee.alexandria.data.networking.IdentifierData
 import com.diolkaee.alexandria.data.networking.retrieveBook
 import com.diolkaee.alexandria.data.persistence.BookDao
 import com.diolkaee.alexandria.data.persistence.BookEntity
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.stateIn
 import retrofit2.HttpException
 import java.net.HttpURLConnection.HTTP_NOT_FOUND
 
 class BookRepository(
     private val apiService: ApiService,
     private val bookDao: BookDao,
-    scope: CoroutineScope
 ) {
-    val archive: StateFlow<List<Book>> = bookDao
+    val archive: Flow<List<Book>> = bookDao
         .getAll()
-        .map { archive -> archive.map { bookEntity ->  bookEntity.toDomainObject() } }
-        .stateIn(scope, SharingStarted.Lazily, emptyList())
+        .map { archive -> archive.map { bookEntity -> bookEntity.toDomainObject() } }
 
-    suspend fun submitBook(book: Book) {
+    suspend fun archiveBook(book: Book) {
         bookDao.insert(book.toEntity())
     }
 
@@ -45,7 +40,7 @@ private fun BookData.toDomainObject() = Book(
     title = title,
     author = authors.first().name,
     pageCount = number_of_pages,
-    publicationYear = publish_date.toInt(),
+    publicationYear = publish_date,
     publisher = publishers.first().name,
     thumbnailUrl = cover?.medium
 )
@@ -60,7 +55,8 @@ private fun BookEntity.toDomainObject() = Book(
     publicationYear = publicationYear,
     publisher = publisher,
     pageCount = pageCount,
-    thumbnailUrl = thumbnailUrl
+    thumbnailUrl = thumbnailUrl,
+    read = read
 )
 
 // ISBN Format: 978-X-XXXXX-XXX-X
@@ -75,5 +71,6 @@ private fun Book.toEntity() = BookEntity(
     publicationYear = publicationYear,
     publisher = publisher,
     pageCount = pageCount,
-    thumbnailUrl = thumbnailUrl
+    thumbnailUrl = thumbnailUrl,
+    read = read
 )

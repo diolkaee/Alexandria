@@ -12,7 +12,7 @@ import com.google.mlkit.vision.common.InputImage
 
 typealias BarcodeListener = (List<String>) -> Unit
 
-private const val SCANNER_TAG = "BarcodeScanner"
+private const val LOG_TAG = "BarcodeScanner"
 
 class BarcodeScanner(private val listener: BarcodeListener) : ImageAnalysis.Analyzer {
     private val scanner: BarcodeScanner = BarcodeScanning.getClient(buildScannerOptions())
@@ -26,7 +26,7 @@ class BarcodeScanner(private val listener: BarcodeListener) : ImageAnalysis.Anal
 
             scanner.process(inputImage)
                 .addOnSuccessListener { barcodes ->
-                    Log.d(SCANNER_TAG, "Detected barcodes: ${barcodes.map { it.rawValue }}")
+                    Log.d(LOG_TAG, "Detected barcodes: ${barcodes.map { it.rawValue }}")
 
                     val detectedISBNs = barcodes
                         .filter { it.valueType == TYPE_ISBN }

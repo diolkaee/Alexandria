@@ -13,14 +13,17 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.diolkaee.alexandria.databinding.ActivityScanBinding
 import com.diolkaee.alexandria.scanner.BarcodeScanner
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-private const val SCAN_ACTIVITY_TAG = "ScanActivity"
+private const val LOG_TAG = "ScanActivity"
 private const val PERMISSIONS_REQUEST_CODE = 10
 private val REQUIRED_PERMISSIONS = listOf(Manifest.permission.CAMERA).toTypedArray()
 
@@ -49,9 +52,11 @@ class ScanActivity : AppCompatActivity() {
     }
 
     private fun setupViews() {
-        lifecycleScope.launchWhenStarted {
-            viewModel.books.observe(this@ScanActivity) {
-                binding.books = it.toList()
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.state.collect {
+                    binding.searchResults = it.searchResults.toList()
+                }
             }
         }
     }
@@ -117,7 +122,7 @@ class ScanActivity : AppCompatActivity() {
                 cameraProvider.unbindAll()
                 cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageAnalyzer)
             } catch (e: Exception) {
-                Log.e(SCAN_ACTIVITY_TAG, "Binding use cases failed", e)
+                Log.e(LOG_TAG, "Binding use cases failed", e)
             }
         }, ContextCompat.getMainExecutor(this))
     }
