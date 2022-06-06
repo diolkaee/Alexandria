@@ -2,10 +2,14 @@ package com.diolkaee.alexandria.ui.scan
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContract
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
@@ -26,6 +30,15 @@ import java.util.concurrent.Executors
 private const val LOG_TAG = "ScanActivity"
 private const val PERMISSIONS_REQUEST_CODE = 10
 private val REQUIRED_PERMISSIONS = listOf(Manifest.permission.CAMERA).toTypedArray()
+
+class ScanActivityContract : ActivityResultContract<Unit, List<Long>>() {
+    override fun createIntent(context: Context, input: Unit): Intent = Intent(context, ScanActivity::class.java)
+
+    override fun parseResult(resultCode: Int, intent: Intent?): List<Long> {
+        val data = intent?.getLongArrayExtra(ScanActivity.EXTRA_TAG)?.toList()
+        return if (resultCode == Activity.RESULT_OK && data != null) data else emptyList()
+    }
+}
 
 class ScanActivity : AppCompatActivity() {
     private val viewModel: ScanViewModel by viewModel()
@@ -61,10 +74,8 @@ class ScanActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupEvents() {
-        binding.setOnBookClick {
-            viewModel.saveBook(it)
-        }
+    private fun setupEvents() = with(binding) {
+        setOnFinish { finishActivity() }
     }
 
     @SuppressLint("MissingSuperCall")
@@ -129,5 +140,17 @@ class ScanActivity : AppCompatActivity() {
 
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
         ContextCompat.checkSelfPermission(baseContext, it) == PackageManager.PERMISSION_GRANTED
+    }
+
+    private fun finishActivity() {
+        val data = Intent()
+        val isbns = viewModel.searchResults.value.map { it.isbn }
+        data.putExtra(EXTRA_TAG, isbns.toLongArray())
+        setResult(RESULT_OK, data)
+        finish()
+    }
+
+    companion object {
+        const val EXTRA_TAG = "isbns"
     }
 }

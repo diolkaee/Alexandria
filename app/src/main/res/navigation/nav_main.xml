@@ -11,15 +11,13 @@
         android:label="@string/shelf_fragment_label"
         tools:layout="@layout/fragment_shelf">
         <action
-            android:id="@+id/shelfToScan"
-            app:destination="@id/ScanActivity" />
+            android:id="@+id/openAddDialog"
+            app:destination="@id/AddDialog" />
     </fragment>
 
-    <activity
-        android:id="@+id/ScanActivity"
-        android:name="com.diolkaee.alexandria.ui.scan.ScanActivity"
-        android:label="@string/activity_scan_label"
-        tools:layout="@layout/activity_scan">
-
-    </activity>
+    <dialog
+        android:id="@+id/AddDialog"
+        android:name="com.diolkaee.alexandria.ui.shelf.AddDialogFragment"
+        android:label="@string/add_fragment_label"
+        tools:layout="@layout/dialog_add" />
 </navigation>

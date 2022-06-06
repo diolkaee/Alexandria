@@ -8,7 +8,6 @@ import com.diolkaee.alexandria.business.book.BookRepository
 import com.diolkaee.alexandria.business.book.EXAMPLE_BOOKS
 import com.diolkaee.alexandria.common.flowFilter
 import com.diolkaee.alexandria.common.next
-import com.diolkaee.alexandria.common.sortBy
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
@@ -27,8 +26,9 @@ class ShelfViewModel(private val bookRepository: BookRepository) : ViewModel() {
     private val _bookFilter = MutableStateFlow<(Book) -> Boolean> { true }
 
     private val _books = bookRepository.archive.stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
-    val books: StateFlow<List<Book>> =
-        _books.flowFilter(_bookFilter).sortBy { it.author }.stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
+    val books: StateFlow<List<Book>> = _books
+        .flowFilter(_bookFilter)
+        .stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
 
     private val _scrollPosition = MutableStateFlow(0)
     val scrollPosition: StateFlow<Int> = _scrollPosition

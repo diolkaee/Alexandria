@@ -93,7 +93,7 @@ class ShelfFragment : Fragment() {
         })
 
         setOnSortBooks { viewModel.toggleSorting() }
-        setOnAddBook { navigateToScan() }
+        setOnAddBook { openAddDialog() }
         setOnChangeLayout { viewModel.advanceLayout() }
         setOnViewDetails { navigateToDetails(it.isbn) }
     }
@@ -103,7 +103,7 @@ class ShelfFragment : Fragment() {
         bookList.clearOnScrollListeners()
     }
 
-    private fun navigateToScan() = navController.navigate(ShelfFragmentDirections.shelfToScan())
+    private fun openAddDialog() = navController.navigate(ShelfFragmentDirections.openAddDialog())
     // TODO Implement
     private fun navigateToDetails(id: Long) = viewModel.navigateToDetails(id)
 }

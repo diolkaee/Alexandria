@@ -15,6 +15,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1828774062816616" />
         <entry key="app/src/main/res/layout/activity_scan.xml" value="0.19479166666666667" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.19479166666666667" />
+        <entry key="app/src/main/res/layout/dialog_add.xml" value="0.13333333333333333" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.19479166666666667" />
         <entry key="app/src/main/res/layout/fragment_scan.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_shelf.xml" value="0.24514200298953662" />
@@ -26,6 +27,7 @@
         <entry key="app/src/main/res/layout/item_book_preview.xml" value="0.19479166666666667" />
         <entry key="app/src/main/res/layout/item_book_preview_page.xml" value="0.1796875" />
         <entry key="app/src/main/res/layout/item_book_preview_shelf.xml" value="0.1796875" />
+        <entry key="app/src/main/res/layout/item_book_result.xml" value="0.25" />
       </map>
     </option>
   </component>

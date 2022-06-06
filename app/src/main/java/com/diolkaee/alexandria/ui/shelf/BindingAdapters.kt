@@ -78,3 +78,12 @@ fun RecyclerView.setBookGrid(books: List<Book>, onBookClick: BookClickListener) 
 
     adapter.submitList(books)
 }
+
+@BindingAdapter("searchResults", "onResultClick")
+fun RecyclerView.setSearchResults(searchResults: List<SearchResult>, onResultClick: ResultClickListener) {
+    val adapter = this.adapter as? SearchResultAdapter ?: SearchResultAdapter(onResultClick).also {
+        this.adapter = it
+    }
+
+    adapter.submitList(searchResults)
+}

@@ -15,6 +15,8 @@ class BookPreviewAdapter :
 
     class ViewHolder(val binding: ItemBookCoverBinding) : RecyclerView.ViewHolder(binding.root)
 
+    override fun getItemId(position: Int): Long = currentList[position].isbn
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding =
             ItemBookCoverBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -28,7 +30,10 @@ class BookPreviewAdapter :
 
 class BookGridAdapter(private val clickListener: BookClickListener) :
     ListAdapter<Book, BookGridAdapter.ViewHolder>(CommonDiffCallback<Book>()) {
+
     class ViewHolder(val binding: ItemBookCoverShelfBinding) : RecyclerView.ViewHolder(binding.root)
+
+    override fun getItemId(position: Int): Long = currentList[position].isbn
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding =

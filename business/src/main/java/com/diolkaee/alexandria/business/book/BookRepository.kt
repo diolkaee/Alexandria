@@ -2,7 +2,7 @@ package com.diolkaee.alexandria.business.book
 
 import com.diolkaee.alexandria.data.networking.ApiService
 import com.diolkaee.alexandria.data.networking.BookData
-import com.diolkaee.alexandria.data.networking.retrieveBook
+import com.diolkaee.alexandria.data.networking.retrieveBooks
 import com.diolkaee.alexandria.data.persistence.BookDao
 import com.diolkaee.alexandria.data.persistence.BookEntity
 import kotlinx.coroutines.flow.Flow
@@ -22,11 +22,11 @@ class BookRepository(
         bookDao.insert(book.toEntity())
     }
 
-    suspend fun fetchBook(isbn: Long): Book? = try {
-        apiService.retrieveBook(isbn)?.toDomainObject()
+    suspend fun fetchBooks(isbn: Long): List<Book> = try {
+        apiService.retrieveBooks(isbn).map { it.toDomainObject() }
     } catch (e: HttpException) {
         when (e.code()) {
-            HTTP_NOT_FOUND -> null
+            HTTP_NOT_FOUND -> emptyList()
             else -> throw e
         }
     }

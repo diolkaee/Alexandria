@@ -8,8 +8,8 @@
             type="java.util.List&lt;com.diolkaee.alexandria.business.book.Book&gt;" />
 
         <variable
-            name="onBookClick"
-            type="com.diolkaee.alexandria.common.list.BookClickListener" />
+            name="onFinish"
+            type="android.view.View.OnClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -29,9 +29,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:bookList="@{searchResults}"
-            app:onBookClick="@{onBookClick}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/viewFinder" />
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{onFinish}"
+            android:text="Finish"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/book_list" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
