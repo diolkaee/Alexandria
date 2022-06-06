@@ -23,8 +23,7 @@ sealed class BookListItem {
 class BookListAdapter(private val clickListener: BookClickListener) :
     ListAdapter<BookListItem, RecyclerView.ViewHolder>(CommonDiffCallback<BookListItem>()) {
 
-    class AuthorViewHolder(private val binding: ItemAuthorBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    class AuthorViewHolder(private val binding: ItemAuthorBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(name: String) {
             binding.name = name
             binding.executePendingBindings()
@@ -39,8 +38,7 @@ class BookListAdapter(private val clickListener: BookClickListener) :
         }
     }
 
-    class BookViewHolder(private val binding: ItemBookBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    class BookViewHolder(private val binding: ItemBookBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Book, clickListener: BookClickListener) {
             binding.book = item
             binding.setOnClick { clickListener(item) }

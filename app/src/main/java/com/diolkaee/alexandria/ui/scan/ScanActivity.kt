@@ -54,8 +54,8 @@ class ScanActivity : AppCompatActivity() {
     private fun setupViews() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.state.collect {
-                    binding.searchResults = it.searchResults.toList()
+                viewModel.searchResults.collect {
+                    binding.searchResults = it.toList()
                 }
             }
         }

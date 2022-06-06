@@ -10,7 +10,7 @@ import com.google.mlkit.vision.barcode.common.Barcode
 import com.google.mlkit.vision.barcode.common.Barcode.TYPE_ISBN
 import com.google.mlkit.vision.common.InputImage
 
-typealias BarcodeListener = (List<String>) -> Unit
+typealias BarcodeListener = (List<Long>) -> Unit
 
 private const val LOG_TAG = "BarcodeScanner"
 
@@ -31,14 +31,8 @@ class BarcodeScanner(private val listener: BarcodeListener) : ImageAnalysis.Anal
                     val detectedISBNs = barcodes
                         .filter { it.valueType == TYPE_ISBN }
                         .mapNotNull { it.rawValue }
-                        .filter { it.length == 10 || it.length == 13 }
-                        .map {
-                            when (it.length) {
-                                10 -> "978$it"
-                                13 -> it
-                                else -> throw IllegalStateException("Illegal ISBN length")
-                            }
-                        }
+                        .filter { it.length == 13 }
+                        .map { it.toLong() }
 
                     if (detectedISBNs.isNotEmpty()) {
                         listener(detectedISBNs)

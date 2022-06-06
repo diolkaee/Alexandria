@@ -14,4 +14,4 @@ interface ApiService {
 }
 
 // TODO return list
-suspend fun ApiService.retrieveBook(isbn13: String) = getBooks("ISBN:$isbn13", "data", "json").results.firstOrNull()
+suspend fun ApiService.retrieveBook(isbn13: Long) = getBooks("ISBN:$isbn13", "data", "json").results.firstOrNull()

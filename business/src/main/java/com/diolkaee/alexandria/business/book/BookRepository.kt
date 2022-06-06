@@ -2,7 +2,6 @@ package com.diolkaee.alexandria.business.book
 
 import com.diolkaee.alexandria.data.networking.ApiService
 import com.diolkaee.alexandria.data.networking.BookData
-import com.diolkaee.alexandria.data.networking.IdentifierData
 import com.diolkaee.alexandria.data.networking.retrieveBook
 import com.diolkaee.alexandria.data.persistence.BookDao
 import com.diolkaee.alexandria.data.persistence.BookEntity
@@ -23,8 +22,8 @@ class BookRepository(
         bookDao.insert(book.toEntity())
     }
 
-    suspend fun fetchBook(isbn13: String): Book? = try {
-        apiService.retrieveBook(isbn13)?.toDomainObject()
+    suspend fun fetchBook(isbn: Long): Book? = try {
+        apiService.retrieveBook(isbn)?.toDomainObject()
     } catch (e: HttpException) {
         when (e.code()) {
             HTTP_NOT_FOUND -> null
@@ -35,8 +34,7 @@ class BookRepository(
 
 // TODO Improve entity mapping
 private fun BookData.toDomainObject() = Book(
-    id = identifiers.toIsbn().replace("-", ""),
-    isbn = identifiers.toIsbn(),
+    isbn = isbn!!.toLong(),
     title = title,
     author = authors.first().name,
     pageCount = number_of_pages,
@@ -45,11 +43,8 @@ private fun BookData.toDomainObject() = Book(
     thumbnailUrl = cover?.medium
 )
 
-private fun IdentifierData.toIsbn() = isbn_13?.firstOrNull() ?: "978${isbn_10?.first()}"
-
 private fun BookEntity.toDomainObject() = Book(
-    id = isbn.toString(),
-    isbn = isbn.formatIsbn(),
+    isbn = isbn,
     title = title,
     author = author,
     publicationYear = publicationYear,
@@ -59,13 +54,8 @@ private fun BookEntity.toDomainObject() = Book(
     read = read
 )
 
-// ISBN Format: 978-X-XXXXX-XXX-X
-private fun Long.formatIsbn(): String {
-    return toString().apply { "${slice(0..2)}-${take(3)}-${slice(4..8)}-${slice(9..11)}-${take(12)}" }
-}
-
 private fun Book.toEntity() = BookEntity(
-    isbn = id.toLong(),
+    isbn = isbn,
     title = title,
     author = author,
     publicationYear = publicationYear,

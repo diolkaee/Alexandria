@@ -4,8 +4,7 @@ package com.diolkaee.alexandria.business.book
 
 val EXAMPLE_BOOKS = listOf(
     Book(
-        id = "9780141439570",
-        isbn = "978-0141439570",
+        isbn = 9780141439570,
         author = "Oscar Wilde",
         title = "The picture of Dorian Gray",
         publisher = "Penguins Books",
@@ -13,8 +12,7 @@ val EXAMPLE_BOOKS = listOf(
         pageCount = 304,
     ),
     Book(
-        id = "9788664341737",
-        isbn = "979-8664341737",
+        isbn = 9798664341737,
         author = "Mary Shelley",
         title = "Frankenstein",
         publisher = "Penguins Books",
@@ -23,8 +21,7 @@ val EXAMPLE_BOOKS = listOf(
         thumbnailUrl = "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1631088473l/35031085._SY475_.jpg"
     ),
     Book(
-        id = "9781713326472",
-        isbn = "978-1713326472",
+        isbn = 9781713326472,
         author = "Robert Louis Stevenson",
         title = "The strange case of Dr. Jekyll and Mr. Hyde",
         publisher = "Penguins Books",
@@ -32,8 +29,7 @@ val EXAMPLE_BOOKS = listOf(
         pageCount = 110,
     ),
     Book(
-        id = "9780393347098",
-        isbn = "978-0393347098",
+        isbn = 9780393347098,
         author = "Franz Kafka",
         title = "The metamorphosis",
         publisher = "Penguins Books",
@@ -41,8 +37,7 @@ val EXAMPLE_BOOKS = listOf(
         pageCount = 201,
     ),
     Book(
-        id = "9789083127033",
-        isbn = "978-9083127033",
+        isbn = 9789083127033,
         author = "F. Scott Fitzgerald",
         title = "The great Gatsby",
         publisher = "Penguins Books",
@@ -53,8 +48,7 @@ val EXAMPLE_BOOKS = listOf(
 )
 
 data class Book(
-    val id: String, // Internal variation of isbn without hyphens. Used to compare scanned and archived books
-    val isbn: String,
+    val isbn: Long,
     val author: String,
     val title: String,
     val publicationYear: String,

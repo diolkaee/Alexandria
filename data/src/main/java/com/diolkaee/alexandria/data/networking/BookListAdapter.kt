@@ -21,9 +21,13 @@ class BookListAdapter {
         jsonReader.beginObject()
         while (jsonReader.hasNext()) {
             // Skip unknown key name and proceed to nested object
-            jsonReader.nextName()
+            val nextIdentifier = jsonReader.nextName()
             val nextBook = bookDelegate.fromJson(jsonReader.nextSource().readUtf8())
-            if (nextBook != null) data.add(nextBook)
+            if (nextBook != null) {
+                // API returns identifier in the format "ISBN:<ISBN13>"
+                val normalizedIdentifier = nextIdentifier.substringAfter(":")
+                data.add(nextBook.copy(isbn = normalizedIdentifier))
+            }
         }
         jsonReader.endObject()
 

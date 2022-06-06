@@ -6,11 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.diolkaee.alexandria.databinding.FragmentShelfBinding
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 private const val LOG_TAG = "ShelfFragment"
@@ -40,14 +44,26 @@ class ShelfFragment : Fragment() {
     }
 
     private fun setupViews() {
-        viewModel.books.observe(viewLifecycleOwner) {
-            binding.books = it
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.books.collect {
+                    binding.books = it
+                }
+            }
         }
-        viewModel.scrollPosition.observe(viewLifecycleOwner) {
-            binding.scrollPosition = it
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.scrollPosition.collect {
+                    binding.scrollPosition = it
+                }
+            }
         }
-        viewModel.layout.observe(viewLifecycleOwner) {
-            binding.layout = it
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.layout.collect {
+                    binding.layout = it
+                }
+            }
         }
     }
 
@@ -79,12 +95,15 @@ class ShelfFragment : Fragment() {
         setOnSortBooks { viewModel.toggleSorting() }
         setOnAddBook { navigateToScan() }
         setOnChangeLayout { viewModel.advanceLayout() }
-        setOnViewDetails { viewModel.navigateToDetails(it) }
+        setOnViewDetails { navigateToDetails(it.isbn) }
     }
 
     private fun teardownEvents() = with(binding) {
+        search.setOnQueryTextListener(null)
         bookList.clearOnScrollListeners()
     }
 
     private fun navigateToScan() = navController.navigate(ShelfFragmentDirections.shelfToScan())
+    // TODO Implement
+    private fun navigateToDetails(id: Long) = viewModel.navigateToDetails(id)
 }

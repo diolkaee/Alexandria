@@ -1,30 +1,17 @@
 package com.diolkaee.alexandria.common
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.map
 
 /**
- * Allows LiveData to be filtered with an observable filter.
+ * Filter a flow with an observable filter predicate.
  * This is useful for e.g. filtering a list when searching.
  */
-fun <T> LiveData<List<T>>.filter(filter: LiveData<(T?) -> Boolean>): LiveData<List<T>> {
-    val mediator = MediatorLiveData<List<T>>()
-
-    mediator.addSource(this) {
-        mediator.value = it.filter(filter.value ?: { true })
+fun <T : Any> StateFlow<List<T>>.flowFilter(predicate: StateFlow<(T) -> Boolean>) =
+    this.combine(predicate) { bookList, filter ->
+        bookList.filter(filter)
     }
-    mediator.addSource(filter) {
-        mediator.value = this.value?.filter(it)
-    }
-    return mediator
-}
 
-inline fun <T : Any, R : Comparable<R>> LiveData<List<T>>.sortBy(crossinline selector: (T) -> R?): LiveData<List<T>> {
-    val mediator = MediatorLiveData<List<T>>()
-
-    mediator.addSource(this) {
-        mediator.value = it.sortedBy(selector)
-    }
-    return mediator
-}
-
+fun <T : Any, R : Comparable<R>> Flow<List<T>>.sortBy(selector: (T) -> R?) = this.map { it.sortedBy(selector) }

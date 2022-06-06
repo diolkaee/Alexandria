@@ -1,16 +1,15 @@
 package com.diolkaee.alexandria.ui.shelf
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.diolkaee.alexandria.business.BuildConfig
 import com.diolkaee.alexandria.business.book.Book
 import com.diolkaee.alexandria.business.book.BookRepository
 import com.diolkaee.alexandria.business.book.EXAMPLE_BOOKS
-import com.diolkaee.alexandria.common.filter
+import com.diolkaee.alexandria.common.flowFilter
 import com.diolkaee.alexandria.common.next
 import com.diolkaee.alexandria.common.sortBy
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 enum class Sorting {
@@ -25,23 +24,23 @@ enum class ShelfLayout {
 }
 
 class ShelfViewModel(private val bookRepository: BookRepository) : ViewModel() {
-    private val _bookFilter = MutableLiveData<(Book?) -> Boolean> { true }
+    private val _bookFilter = MutableStateFlow<(Book) -> Boolean> { true }
 
-    private val _books = MutableLiveData<List<Book>>(emptyList())
-    val books: LiveData<List<Book>> = _books.filter(_bookFilter).sortBy { it.author }
+    private val _books = bookRepository.archive.stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
+    val books: StateFlow<List<Book>> =
+        _books.flowFilter(_bookFilter).sortBy { it.author }.stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
 
-    private val _scrollPosition = MutableLiveData(0)
-    val scrollPosition: LiveData<Int> = _scrollPosition
+    private val _scrollPosition = MutableStateFlow(0)
+    val scrollPosition: StateFlow<Int> = _scrollPosition
 
     // TODO Add functionality
-    private val _sorting = MutableLiveData(Sorting.ALPHABETICAL_TITLE)
-    val sorting: LiveData<Sorting> = _sorting
+    private val _sorting = MutableStateFlow(Sorting.ALPHABETICAL_TITLE)
+    val sorting: StateFlow<Sorting> = _sorting
 
-    private val _layout = MutableLiveData(ShelfLayout.LIST)
-    val layout: LiveData<ShelfLayout> = _layout
+    private val _layout = MutableStateFlow(ShelfLayout.LIST)
+    val layout: StateFlow<ShelfLayout> = _layout
 
     init {
-        observeArchive()
         if (BuildConfig.DEBUG) viewModelScope.launch {
             EXAMPLE_BOOKS.forEach { bookRepository.archiveBook(it) }
         }
@@ -52,11 +51,11 @@ class ShelfViewModel(private val bookRepository: BookRepository) : ViewModel() {
     }
 
     fun toggleSorting() {
-        _sorting.value = sorting.value?.next()
+        _sorting.update { it.next() }
     }
 
     fun advanceLayout() {
-        _layout.value = layout.value?.next()
+        _layout.update { it.next() }
     }
 
     fun setQuery(query: String?) {
@@ -67,23 +66,15 @@ class ShelfViewModel(private val bookRepository: BookRepository) : ViewModel() {
         _bookFilter.value = searchFilter
     }
 
-    fun navigateToDetails(book: Book) {
+    fun navigateToDetails(id: Long) {
         // TODO Change to navigation
         viewModelScope.launch {
+            val book = books.value.find { it.isbn == id } ?: return@launch
             bookRepository.archiveBook(book.copy(read = !book.read))
-        }
-    }
-
-    private fun observeArchive() {
-        viewModelScope.launch {
-            bookRepository.archive.collect {
-                _books.value = it
-            }
         }
     }
 }
 
 // TODO Implement fuzzy search
 private fun Book.contains(searchQuery: String) =
-    this.author.contains(searchQuery, ignoreCase = true) ||
-            this.title.contains(searchQuery, ignoreCase = true)
+    this.author.contains(searchQuery, ignoreCase = true) || this.title.contains(searchQuery, ignoreCase = true)
