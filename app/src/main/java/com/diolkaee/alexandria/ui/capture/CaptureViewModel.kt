@@ -23,7 +23,7 @@ class CaptureViewModel(private val bookRepository: BookRepository) : ViewModel()
     }
 
     // TODO Rename parameters
-    fun toggleMark(searchResult: SearchResult) {
+    fun toggleMarked(searchResult: SearchResult) {
         _searchResults.update {
             it.map { result ->
                 if (result.book == searchResult.book) {

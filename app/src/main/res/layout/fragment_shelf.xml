@@ -69,7 +69,8 @@
                 android:layout_width="0dp"
                 android:layout_height="30dp"
                 android:layout_weight="1"
-                android:background="@drawable/bg_white_rounded"
+                android:backgroundTint="?colorSecondary"
+                android:background="@drawable/bg_rounded"
                 app:queryHint="Search book" />
 
             <com.google.android.material.button.MaterialButton
@@ -112,7 +113,6 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="4dp"
-            android:background="@color/black"
             android:paddingHorizontal="@dimen/activity_margin_horizontal"
             android:paddingBottom="@dimen/activity_margin_vertical"
             android:clipToPadding="false"

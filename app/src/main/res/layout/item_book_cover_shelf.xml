@@ -45,6 +45,6 @@
             app:layout_constraintEnd_toEndOf="@id/cover"
             app:layout_constraintStart_toStartOf="@id/cover"
             app:layout_constraintTop_toBottomOf="@id/cover"
-            app:tint="@color/design_default_color_secondary" />
+            app:tint="?colorSecondaryVariant" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

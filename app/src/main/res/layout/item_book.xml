@@ -18,6 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="@dimen/list_item_margin"
         android:onClick="@{onClick}"
+        android:background="?colorSecondaryVariant"
         app:contentPadding="@dimen/card_padding">
 
         <CheckedTextView

@@ -95,7 +95,7 @@ class ShelfFragment : Fragment() {
         setOnSortBooks { viewModel.toggleSorting() }
         setOnAddBook { openAddDialog() }
         setOnChangeLayout { viewModel.advanceLayout() }
-        setOnViewDetails { navigateToDetails(it.isbn) }
+        setOnViewDetails { viewModel.navigateToDetails(it.isbn) }
     }
 
     private fun teardownEvents() = with(binding) {
@@ -104,6 +104,4 @@ class ShelfFragment : Fragment() {
     }
 
     private fun openAddDialog() = navController.navigate(ShelfFragmentDirections.openCaptureDialog())
-    // TODO Implement
-    private fun navigateToDetails(id: Long) = viewModel.navigateToDetails(id)
 }
