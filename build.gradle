@@ -27,6 +27,11 @@ subprojects {
     dependencies {
         detektPlugins "io.gitlab.arturbosch.detekt:detekt-formatting:$detekt_version" // ktlint
     }
+
+    detekt {
+        buildUponDefaultConfig = true
+        config = rootProject.files('detekt.yml')
+    }
 }
 
 task clean(type: Delete) {

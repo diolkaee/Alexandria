@@ -1,0 +1,43 @@
+build:
+  maxIssues: 0
+
+complexity:
+  TooManyFunctions:
+    # prefer many small functions instead of few large functions (needs to be looked at on a case by case basis)
+    active: false
+  ComplexCondition:
+    # longer conditions are okay, as long as they are still readable
+    threshold: 5
+
+formatting:
+  MaximumLineLength:
+    # use style rule (ktlint) instead
+    active: false
+  NoWildcardImports:
+    active: false
+
+exceptions:
+  TooGenericExceptionCaught:
+    # allow generic error handling to prevent rare exceptions crashing the app
+    active: false
+
+# This configures ktlint
+style:
+  ForbiddenComment:
+    # allow TODOs for postponing unspecified behavior
+    values:
+      - 'FIXME'
+  MaxLineLength:
+    maxLineLength: 120
+    # tests have descriptive long names
+    excludes: &testFolders
+      - '**/test/**'
+      - '**/androidTest/**'
+  MagicNumber:
+    # this is fine, e.g. for accessing by index
+    active: false
+  ReturnCount:
+    # allow guard pattern (early returns)
+    active: false
+  WildcardImport:
+    active: false

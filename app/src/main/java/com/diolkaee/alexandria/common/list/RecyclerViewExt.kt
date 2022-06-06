@@ -1,3 +1,5 @@
+@file:Suppress("MatchingDeclarationName")
+
 package com.diolkaee.alexandria.common.list
 
 import androidx.databinding.BindingAdapter
