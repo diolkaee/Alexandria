@@ -1,4 +1,4 @@
-package com.diolkaee.alexandria.ui.scan
+package com.diolkaee.alexandria.ui.capture.scan
 
 import android.util.Log
 import androidx.lifecycle.ViewModel

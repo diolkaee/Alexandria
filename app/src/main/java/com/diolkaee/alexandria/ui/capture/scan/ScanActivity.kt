@@ -1,4 +1,4 @@
-package com.diolkaee.alexandria.ui.scan
+package com.diolkaee.alexandria.ui.capture.scan
 
 import android.Manifest
 import android.annotation.SuppressLint

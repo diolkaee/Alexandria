@@ -103,7 +103,7 @@ class ShelfFragment : Fragment() {
         bookList.clearOnScrollListeners()
     }
 
-    private fun openAddDialog() = navController.navigate(ShelfFragmentDirections.openAddDialog())
+    private fun openAddDialog() = navController.navigate(ShelfFragmentDirections.openCaptureDialog())
     // TODO Implement
     private fun navigateToDetails(id: Long) = viewModel.navigateToDetails(id)
 }

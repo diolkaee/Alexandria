@@ -28,7 +28,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.diolkaee.alexandria.ui.scan.ScanActivity"
+            android:name="com.diolkaee.alexandria.ui.capture.scan.ScanActivity"
             android:exported="true"
             android:theme="@style/Theme.Alexandria.NoActionBar">
         </activity>

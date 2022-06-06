@@ -12,6 +12,9 @@ import androidx.viewpager2.widget.ViewPager2
 import com.diolkaee.alexandria.R
 import com.diolkaee.alexandria.business.book.Book
 import com.diolkaee.alexandria.common.list.BookClickListener
+import com.diolkaee.alexandria.ui.capture.ResultClickListener
+import com.diolkaee.alexandria.ui.capture.SearchResult
+import com.diolkaee.alexandria.ui.capture.SearchResultAdapter
 import kotlin.math.abs
 
 @BindingAdapter("books")

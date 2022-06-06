@@ -9,15 +9,19 @@
 
         <variable
             name="searchResults"
-            type="java.util.List&lt;com.diolkaee.alexandria.ui.shelf.SearchResult&gt;" />
+            type="java.util.List&lt;com.diolkaee.alexandria.ui.capture.SearchResult&gt;" />
 
         <variable
             name="onAdd"
-            type="com.diolkaee.alexandria.ui.shelf.ResultClickListener" />
+            type="com.diolkaee.alexandria.ui.capture.ResultClickListener" />
 
         <variable
             name="onFinish"
             type="android.view.View.OnClickListener" />
+
+        <variable
+            name="inputError"
+            type="String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -27,18 +31,25 @@
         android:paddingHorizontal="@dimen/activity_margin_horizontal"
         android:paddingVertical="@dimen/activity_margin_vertical">
 
-        <EditText
-            android:id="@+id/search"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/search_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:hint="Search Isbn"
-            android:importantForAutofill="no"
-            android:inputType="number"
-            android:maxLength="13"
+            android:hint="@string/capture__input__hint"
+            app:error="@{inputError}"
             app:layout_constraintEnd_toStartOf="@id/scan_button"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/search_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:maxLength="13" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/scan_button"
@@ -48,7 +59,7 @@
             android:onClick="@{onScan}"
             app:icon="@drawable/ic_camera"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/search"
+            app:layout_constraintStart_toEndOf="@id/search_layout"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.Barrier
@@ -56,7 +67,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:barrierDirection="bottom"
-            app:constraint_referenced_ids="search, scan_button" />
+            app:constraint_referenced_ids="search_layout, scan_button" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/results"
@@ -76,6 +87,7 @@
             android:layout_height="wrap_content"
             android:onClick="@{onFinish}"
             android:text="Finish"
+            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/results" />

@@ -3,11 +3,12 @@
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="shelf_fragment_label">Shelf</string>
-    <string name="add_fragment_label">Shelf</string>
+    <string name="capture_fragment_label">Capture</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello shelf fragment</string>
     <string name="shelf__fab__content_description">add Book</string>
     <string name="shelf__sort__content_description">set sorting</string>
+    <string name="capture__input__hint">Search ISBN</string>
+    <string name="capture__input__error">ISBNs must have 10 or 13 characters</string>
 </resources>

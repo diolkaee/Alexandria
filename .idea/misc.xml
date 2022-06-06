@@ -16,6 +16,7 @@
         <entry key="app/src/main/res/layout/activity_scan.xml" value="0.19479166666666667" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.19479166666666667" />
         <entry key="app/src/main/res/layout/dialog_add.xml" value="0.13333333333333333" />
+        <entry key="app/src/main/res/layout/dialog_capture.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.19479166666666667" />
         <entry key="app/src/main/res/layout/fragment_scan.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_shelf.xml" value="0.24514200298953662" />

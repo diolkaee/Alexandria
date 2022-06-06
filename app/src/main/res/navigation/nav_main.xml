@@ -11,13 +11,13 @@
         android:label="@string/shelf_fragment_label"
         tools:layout="@layout/fragment_shelf">
         <action
-            android:id="@+id/openAddDialog"
-            app:destination="@id/AddDialog" />
+            android:id="@+id/openCaptureDialog"
+            app:destination="@id/CaptureDialog" />
     </fragment>
 
     <dialog
-        android:id="@+id/AddDialog"
-        android:name="com.diolkaee.alexandria.ui.shelf.AddDialogFragment"
-        android:label="@string/add_fragment_label"
-        tools:layout="@layout/dialog_add" />
+        android:id="@+id/CaptureDialog"
+        android:name="com.diolkaee.alexandria.ui.capture.CaptureDialogFragment"
+        android:label="@string/capture_fragment_label"
+        tools:layout="@layout/dialog_capture" />
 </navigation>

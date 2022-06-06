@@ -1,4 +1,4 @@
-package com.diolkaee.alexandria.ui.shelf
+package com.diolkaee.alexandria.ui.capture
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,6 +6,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.diolkaee.alexandria.common.list.CommonDiffCallback
 import com.diolkaee.alexandria.databinding.ItemBookResultBinding
+
+fun interface ResultClickListener {
+    operator fun invoke(result: SearchResult)
+}
 
 class SearchResultAdapter(private val clickListener: ResultClickListener) :
     ListAdapter<SearchResult, SearchResultAdapter.ViewHolder>(CommonDiffCallback<SearchResult>()) {

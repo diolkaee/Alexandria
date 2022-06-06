@@ -1,4 +1,4 @@
-package com.diolkaee.alexandria.ui.shelf
+package com.diolkaee.alexandria.ui.capture
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 
 data class SearchResult(val book: Book, val marked: Boolean = false)
 
-class AddDialogViewModel(private val bookRepository: BookRepository) : ViewModel() {
+class CaptureViewModel(private val bookRepository: BookRepository) : ViewModel() {
     private val _searchResults = MutableStateFlow<List<SearchResult>>(emptyList())
     val searchResults: StateFlow<List<SearchResult>> = _searchResults
 
