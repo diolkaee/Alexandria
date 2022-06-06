@@ -1,6 +1,7 @@
 package com.diolkaee.alexandria.data
 
 import androidx.room.Room
+import com.diolkaee.alexandria.data.networking.API_BASE_URL
 import com.diolkaee.alexandria.data.networking.ApiService
 import com.diolkaee.alexandria.data.networking.BookListAdapter
 import com.diolkaee.alexandria.data.persistence.BOOK_DATABASE_NAME
@@ -39,7 +40,7 @@ val dataModule = module {
     single {
         Retrofit.Builder()
             .client(get())
-            .baseUrl("https://openlibrary.org/api/")
+            .baseUrl(API_BASE_URL)
             .addConverterFactory(get())
             .build()
     }

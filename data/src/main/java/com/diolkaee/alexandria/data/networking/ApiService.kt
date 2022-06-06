@@ -3,6 +3,11 @@ package com.diolkaee.alexandria.data.networking
 import retrofit2.http.GET
 import retrofit2.http.Query
 
+const val API_BASE_URL = "https://openlibrary.org/api/"
+
+/**
+ * [API documentation](https://openlibrary.org/developers/api)
+ */
 interface ApiService {
 
     @GET("books")
