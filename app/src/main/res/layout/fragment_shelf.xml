@@ -72,6 +72,7 @@
                 android:layout_weight="1"
                 android:backgroundTint="?colorSecondary"
                 android:background="@drawable/bg_rounded"
+                app:iconifiedByDefault="false"
                 app:queryHint="Search book" />
 
             <com.google.android.material.button.MaterialButton
@@ -100,7 +101,8 @@
             android:clipToPadding="false"
             android:layout_marginTop="4dp"
             android:paddingHorizontal="@dimen/activity_margin_horizontal"
-            android:paddingBottom="@dimen/activity_margin_vertical"
+            android:paddingTop="@dimen/activity_margin_vertical"
+            android:paddingBottom="@dimen/list_bottom_padding"
             android:visibility="@{layout == ShelfLayout.GRID ? View.GONE : View.VISIBLE}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:bookList="@{books}"
@@ -115,7 +117,7 @@
             android:layout_height="0dp"
             android:layout_marginTop="4dp"
             android:paddingHorizontal="@dimen/activity_margin_horizontal"
-            android:paddingBottom="@dimen/activity_margin_vertical"
+            android:paddingBottom="@dimen/list_bottom_padding"
             android:clipToPadding="false"
             android:visibility="@{layout == ShelfLayout.GRID ? View.VISIBLE : View.GONE}"
             app:bookGrid="@{books}"

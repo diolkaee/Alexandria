@@ -20,6 +20,7 @@ import kotlin.math.abs
 @BindingAdapter("books")
 fun ViewPager2.setBooks(books: List<Book>) {
     val adapter = this.adapter as? BookPreviewAdapter ?: BookPreviewAdapter().also {
+        it.setHasStableIds(true)
         this.adapter = it
 
         // Render adjacent books visible
@@ -76,6 +77,7 @@ private class HorizontalMarginDecoration(context: Context, @DimenRes horizontalM
 @BindingAdapter("bookGrid", "onBookClick")
 fun RecyclerView.setBookGrid(books: List<Book>, onBookClick: BookClickListener) {
     val adapter = this.adapter as? BookGridAdapter ?: BookGridAdapter(onBookClick).also {
+        it.setHasStableIds(true)
         this.adapter = it
     }
 
@@ -85,6 +87,7 @@ fun RecyclerView.setBookGrid(books: List<Book>, onBookClick: BookClickListener) 
 @BindingAdapter("searchResults", "onResultClick")
 fun RecyclerView.setSearchResults(searchResults: List<SearchResult>, onResultClick: ResultClickListener) {
     val adapter = this.adapter as? SearchResultAdapter ?: SearchResultAdapter(onResultClick).also {
+        it.setHasStableIds(true)
         this.adapter = it
     }
 

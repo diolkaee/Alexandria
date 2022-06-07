@@ -18,7 +18,7 @@ class CaptureViewModel(private val bookRepository: BookRepository) : ViewModel()
     fun fetchBooks(isbn: Long) {
         viewModelScope.launch {
             val results = bookRepository.fetchBooks(isbn).map { SearchResult(it, marked = false) }
-            _searchResults.value = results
+            _searchResults.update { it.plus(results) }
         }
     }
 
