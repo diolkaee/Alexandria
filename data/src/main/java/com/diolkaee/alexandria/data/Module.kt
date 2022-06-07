@@ -1,10 +1,8 @@
 package com.diolkaee.alexandria.data
 
 import androidx.room.Room
-import com.diolkaee.alexandria.data.networking.API_BASE_URL
 import com.diolkaee.alexandria.data.networking.ApiService
 import com.diolkaee.alexandria.data.networking.BookListAdapter
-import com.diolkaee.alexandria.data.persistence.BOOK_DATABASE_NAME
 import com.diolkaee.alexandria.data.persistence.BookDatabase
 import com.squareup.moshi.Moshi
 import okhttp3.OkHttpClient
@@ -20,10 +18,7 @@ val dataModule = module {
     single {
         OkHttpClient.Builder()
             .addInterceptor(
-                HttpLoggingInterceptor().apply {
-                    level =
-                        HttpLoggingInterceptor.Level.BODY
-                }
+                HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
             )
             .build()
     }
@@ -40,7 +35,7 @@ val dataModule = module {
     single {
         Retrofit.Builder()
             .client(get())
-            .baseUrl(API_BASE_URL)
+            .baseUrl(ApiService.BASE_URL)
             .addConverterFactory(get())
             .build()
     }
@@ -51,7 +46,7 @@ val dataModule = module {
         Room.databaseBuilder(
             get(),
             BookDatabase::class.java,
-            BOOK_DATABASE_NAME
+            BookDatabase.FILE_NAME
         )
             .build()
     }
