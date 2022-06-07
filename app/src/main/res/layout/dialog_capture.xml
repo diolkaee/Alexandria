@@ -57,10 +57,13 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:onClick="@{onScan}"
+            app:iconPadding="0dp"
+            app:iconGravity="textStart"
             app:icon="@drawable/ic_camera"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/search_layout"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/search_layout"
+            app:layout_constraintBottom_toBottomOf="@id/search_layout"/>
 
         <androidx.constraintlayout.widget.Barrier
             android:id="@+id/barrier"
