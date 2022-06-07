@@ -8,4 +8,5 @@
     <dimen name="list_item_margin">4dp</dimen>
     <dimen name="book_preview_height">200dp</dimen>
     <dimen name="book_preview_width">150dp</dimen>
+    <dimen name="details_label_margin">16dp</dimen>
 </resources>

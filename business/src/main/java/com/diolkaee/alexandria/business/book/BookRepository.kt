@@ -22,6 +22,8 @@ class BookRepository(
         bookDao.insert(book.toEntity())
     }
 
+    suspend fun retrieveBook(isbn: Long) = bookDao.get(isbn).toDomainObject()
+
     suspend fun fetchBooks(isbn: Long): List<Book> = try {
         apiService.retrieveBooks(isbn).map { it.toDomainObject() }
     } catch (e: HttpException) {
@@ -51,7 +53,9 @@ private fun BookEntity.toDomainObject() = Book(
     publisher = publisher,
     pageCount = pageCount,
     thumbnailUrl = thumbnailUrl,
-    read = read
+    read = read,
+    rating = rating,
+    notes = notes,
 )
 
 private fun Book.toEntity() = BookEntity(
@@ -62,5 +66,7 @@ private fun Book.toEntity() = BookEntity(
     publisher = publisher,
     pageCount = pageCount,
     thumbnailUrl = thumbnailUrl,
-    read = read
+    read = read,
+    rating = rating,
+    notes = notes,
 )

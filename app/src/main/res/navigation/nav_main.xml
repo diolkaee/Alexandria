@@ -3,21 +3,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_main"
-    app:startDestination="@id/ShelfFragment">
+    app:startDestination="@id/shelf">
 
     <fragment
-        android:id="@+id/ShelfFragment"
+        android:id="@+id/shelf"
         android:name="com.diolkaee.alexandria.ui.shelf.ShelfFragment"
         android:label="@string/shelf_fragment_label"
         tools:layout="@layout/fragment_shelf">
         <action
-            android:id="@+id/openCaptureDialog"
-            app:destination="@id/CaptureDialog" />
+            android:id="@+id/shelf_to_capture"
+            app:destination="@id/capture" />
+        <action
+            android:id="@+id/shelf_to_details"
+            app:destination="@id/details" />
     </fragment>
 
     <dialog
-        android:id="@+id/CaptureDialog"
+        android:id="@+id/capture"
         android:name="com.diolkaee.alexandria.ui.capture.CaptureDialogFragment"
         android:label="@string/capture_fragment_label"
         tools:layout="@layout/dialog_capture" />
+
+    <fragment
+        android:id="@+id/details"
+        android:name="com.diolkaee.alexandria.ui.details.DetailsFragment"
+        android:label="@string/details_fragment_label"
+        tools:layout="@layout/fragment_details">
+        <argument
+            android:name="isbn"
+            app:argType="long" />
+    </fragment>
 </navigation>

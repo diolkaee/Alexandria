@@ -95,7 +95,7 @@ class ShelfFragment : Fragment() {
         setOnSortBooks { viewModel.toggleSorting() }
         setOnAddBook { openAddDialog() }
         setOnChangeLayout { viewModel.advanceLayout() }
-        setOnViewDetails { viewModel.navigateToDetails(it.isbn) }
+        setOnViewDetails { openDetails(it.isbn) }
     }
 
     private fun teardownEvents() = with(binding) {
@@ -103,5 +103,7 @@ class ShelfFragment : Fragment() {
         bookList.clearOnScrollListeners()
     }
 
-    private fun openAddDialog() = navController.navigate(ShelfFragmentDirections.openCaptureDialog())
+    private fun openAddDialog() = navController.navigate(ShelfFragmentDirections.shelfToCapture())
+
+    private fun openDetails(isbn: Long) = navController.navigate(ShelfFragmentDirections.shelfToDetails(isbn))
 }

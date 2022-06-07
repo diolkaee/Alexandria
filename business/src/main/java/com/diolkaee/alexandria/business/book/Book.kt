@@ -2,6 +2,8 @@
 
 package com.diolkaee.alexandria.business.book
 
+import androidx.annotation.FloatRange
+
 val EXAMPLE_BOOKS = listOf(
     Book(
         isbn = 9780141439570,
@@ -53,7 +55,10 @@ data class Book(
     val title: String,
     val publicationYear: String,
     val publisher: String,
+    val read: Boolean = false,
     val pageCount: Int?,
     val thumbnailUrl: String? = null,
-    val read: Boolean = false
+    @FloatRange(from = 1.0, to = 5.0)
+    val rating: Float? = null,
+    val notes: String? = null
 )

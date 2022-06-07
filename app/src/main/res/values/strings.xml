@@ -4,6 +4,7 @@
     <!-- Strings used for fragments for navigation -->
     <string name="shelf_fragment_label">Shelf</string>
     <string name="capture_fragment_label">Capture</string>
+    <string name="details_fragment_label">Details</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 

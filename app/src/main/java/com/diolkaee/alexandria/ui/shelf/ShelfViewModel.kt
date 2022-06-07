@@ -65,14 +65,6 @@ class ShelfViewModel(private val bookRepository: BookRepository) : ViewModel() {
 
         _bookFilter.value = searchFilter
     }
-
-    fun navigateToDetails(id: Long) {
-        // TODO Change to navigation
-        viewModelScope.launch {
-            val book = books.value.find { it.isbn == id } ?: return@launch
-            bookRepository.archiveBook(book.copy(read = !book.read))
-        }
-    }
 }
 
 // TODO Implement fuzzy search

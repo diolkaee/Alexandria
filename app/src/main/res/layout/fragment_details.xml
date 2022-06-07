@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="book"
+            type="com.diolkaee.alexandria.business.book.Book" />
+
+        <variable
+            name="notes"
+            type="java.util.List&lt;String&gt;" />
+
+        <variable
+            name="onRate"
+            type="com.diolkaee.alexandria.ui.details.RatingListener" />
+
+        <variable
+            name="onSubmitNotes"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="onCancelNotes"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/preview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?colorSecondary"
+            android:paddingVertical="16dp">
+
+            <include
+                layout="@layout/item_book_cover_shelf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:book="@{book}" />
+        </FrameLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/activity_margin_horizontal"
+                android:paddingVertical="@dimen/activity_margin_vertical">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/label_guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="80dp" />
+
+                <TextView
+                    android:id="@+id/author_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Author"
+                    android:textColor="?colorOnPrimary"
+                    app:layout_constraintBottom_toBottomOf="@id/author"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/author" />
+
+                <TextView
+                    android:id="@+id/author"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@{book.author}"
+                    android:textColor="?colorOnPrimary"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/label_guideline"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Oscar Wilde" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/author_barrier"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:barrierMargin="@dimen/details_label_margin"
+                    app:constraint_referenced_ids="author_label, author" />
+
+                <TextView
+                    android:id="@+id/title_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Title"
+                    android:textColor="?colorOnPrimary"
+                    app:layout_constraintBottom_toBottomOf="@id/title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/title" />
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@{book.title}"
+                    android:textColor="?colorOnPrimary"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/label_guideline"
+                    app:layout_constraintTop_toBottomOf="@id/author_barrier"
+                    tools:text="The picture of Dorian Gray" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/title_barrier"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:barrierMargin="@dimen/details_label_margin"
+                    app:constraint_referenced_ids="title_label, title" />
+
+                <TextView
+                    android:id="@+id/publisher_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Publisher"
+                    android:textColor="?colorOnPrimary"
+                    app:layout_constraintBottom_toBottomOf="@id/publisher"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/publisher" />
+
+                <TextView
+                    android:id="@+id/publisher"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@{book.publisher}"
+                    android:textColor="?colorOnPrimary"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/label_guideline"
+                    app:layout_constraintTop_toBottomOf="@id/title_barrier"
+                    tools:text="Penguin Books" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/publisher_barrier"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:barrierMargin="@dimen/details_label_margin"
+                    app:constraint_referenced_ids="publisher_label, publisher" />
+
+                <TextView
+                    android:id="@+id/page_count_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pages"
+                    android:textColor="?colorOnPrimary"
+                    android:visibility="@{book.pageCount != null ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="@id/page_count"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/page_count" />
+
+                <TextView
+                    android:id="@+id/page_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{book.pageCount.toString()}"
+                    android:textColor="?colorOnPrimary"
+                    android:visibility="@{book.pageCount != null ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/label_guideline"
+                    app:layout_constraintTop_toBottomOf="@id/publisher_barrier"
+                    tools:text="200" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/page_count_barrier"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:barrierMargin="@dimen/details_label_margin"
+                    app:constraint_referenced_ids="page_count_label, page_count" />
+
+                <TextView
+                    android:id="@+id/rating_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rating"
+                    android:textColor="?colorOnPrimary"
+                    app:layout_constraintBottom_toBottomOf="@id/rating"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/rating" />
+
+                <androidx.appcompat.widget.AppCompatRatingBar
+                    android:id="@+id/rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:numStars="5"
+                    android:onRatingChanged="@{(view, rating, _) -> onRate.invoke(rating)}"
+                    android:rating="@{book.rating}"
+                    android:textColor="?colorOnPrimary"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/label_guideline"
+                    app:layout_constraintTop_toBottomOf="@id/page_count_barrier" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/rating_barrier"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:barrierMargin="@dimen/details_label_margin"
+                    app:constraint_referenced_ids="rating_label, rating" />
+
+                <TextView
+                    android:id="@+id/notes_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Notes"
+                    android:textColor="?colorOnPrimary"
+                    app:layout_constraintBottom_toBottomOf="@id/notes_layout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/notes_layout" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/notes_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter your notes here"
+                    android:textColor="?colorOnPrimary"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/label_guideline"
+                    app:layout_constraintTop_toBottomOf="@id/rating_barrier">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/notes_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="textMultiLine"
+                        android:text="@{book.notes}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/submit_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{onSubmitNotes}"
+                    android:text="Submit"
+                    app:layout_constraintStart_toStartOf="@id/notes_layout"
+                    app:layout_constraintTop_toBottomOf="@id/notes_layout" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/cancel_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="64dp"
+                    android:backgroundTint="?colorSecondary"
+                    android:text="Cancel"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toEndOf="@id/submit_button"
+                    app:layout_constraintTop_toBottomOf="@id/notes_layout" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </LinearLayout>
+</layout>
