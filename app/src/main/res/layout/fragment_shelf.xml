@@ -82,7 +82,7 @@
                 android:contentDescription="@string/shelf__sort__content_description"
                 android:onClick="@{onSortBooks}"
                 app:icon="@drawable/ic_sort"
-                app:iconTint="@color/black" />
+                app:iconTint="?colorSecondaryVariant" />
 
             <com.google.android.material.button.MaterialButton
                 android:layout_width="48dp"
@@ -91,7 +91,7 @@
                 android:contentDescription="Change layout"
                 android:onClick="@{onChangeLayout}"
                 app:icon="@drawable/ic_bolt"
-                app:iconTint="@color/black" />
+                app:iconTint="?colorSecondaryVariant" />
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
