@@ -19,7 +19,7 @@ class DetailsViewModel(
 
     init {
         viewModelScope.launch {
-            _book.value = bookRepository.retrieveBook(isbn)
+            _book.value = bookRepository.retrieve(isbn)
         }
     }
 
@@ -40,7 +40,7 @@ class DetailsViewModel(
     private fun updateBook(newValue: Book) {
         _book.update { newValue }
         viewModelScope.launch {
-            bookRepository.archiveBook(newValue)
+            bookRepository.insert(newValue)
         }
     }
 }

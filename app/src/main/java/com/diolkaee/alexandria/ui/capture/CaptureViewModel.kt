@@ -17,25 +17,27 @@ class CaptureViewModel(private val bookRepository: BookRepository) : ViewModel()
 
     fun fetchBooks(isbn: Long) {
         viewModelScope.launch {
-            val results = bookRepository.fetchBooks(isbn).map { SearchResult(it, marked = false) }
+            val results = bookRepository.fetch(isbn).map { SearchResult(it, marked = false) }
             _searchResults.update { it.plus(results) }
         }
     }
 
-    // TODO Rename parameters
-    fun toggleMarked(searchResult: SearchResult) {
+    fun toggleMarked(isbn: Long) {
         _searchResults.update {
             it.map { result ->
-                if (result.book == searchResult.book) {
+                if (result.book.isbn == isbn) {
                     result.copy(marked = !result.marked)
-                } else result
+                } else {
+                    result
+                }
             }
         }
     }
 
     fun archiveMarkedBooks() = viewModelScope.launch {
-        searchResults.value
+        val markedBooks = searchResults.value
             .filter { it.marked }
-            .forEach { bookRepository.archiveBook(it.book) }
+            .map { it.book }
+        bookRepository.insertAll(markedBooks)
     }
 }

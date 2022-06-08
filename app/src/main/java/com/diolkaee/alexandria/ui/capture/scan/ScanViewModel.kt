@@ -27,7 +27,7 @@ class ScanViewModel(private val bookRepository: BookRepository) : ViewModel() {
             if (!currentSearch.contains(isbn) && !_searchResults.value.containsIsbn(isbn)) {
                 currentSearch.add(isbn)
                 viewModelScope.launch {
-                    val results = bookRepository.fetchBooks(isbn)
+                    val results = bookRepository.fetch(isbn)
                     if (results.isNotEmpty()) {
                         _searchResults.update { it.plus(results) }
                         Log.d(LOG_TAG, "Added book $results")

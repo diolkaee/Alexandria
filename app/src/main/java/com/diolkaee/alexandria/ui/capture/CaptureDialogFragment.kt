@@ -44,7 +44,7 @@ class CaptureDialogFragment : BottomSheetDialogFragment() {
     private fun setupEvents() = with(binding) {
         searchInput.onSubmit(::handleSearchInput)
         setOnScan { scanBookIntent.launch(Unit) }
-        setOnAdd { viewModel.toggleMarked(it) }
+        setOnAdd { viewModel.toggleMarked(it.book.isbn) }
         setOnFinish { finishDialog() }
     }
 

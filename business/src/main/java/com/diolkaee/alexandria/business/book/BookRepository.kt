@@ -18,13 +18,17 @@ class BookRepository(
         .getAll()
         .map { archive -> archive.map { bookEntity -> bookEntity.toDomainObject() } }
 
-    suspend fun archiveBook(book: Book) {
+    suspend fun insert(book: Book) {
         bookDao.insert(book.toEntity())
     }
 
-    suspend fun retrieveBook(isbn: Long) = bookDao.get(isbn).toDomainObject()
+    suspend fun insertAll(books: List<Book>) {
+        bookDao.insertAll(books.map { it.toEntity() })
+    }
 
-    suspend fun fetchBooks(isbn: Long): List<Book> = try {
+    suspend fun retrieve(isbn: Long) = bookDao.get(isbn).toDomainObject()
+
+    suspend fun fetch(isbn: Long): List<Book> = try {
         apiService.retrieveBooks(isbn).map { it.toDomainObject() }
     } catch (e: HttpException) {
         when (e.code()) {

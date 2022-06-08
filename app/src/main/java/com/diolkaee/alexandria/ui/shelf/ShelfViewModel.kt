@@ -42,7 +42,7 @@ class ShelfViewModel(private val bookRepository: BookRepository) : ViewModel() {
 
     init {
         if (BuildConfig.DEBUG) viewModelScope.launch {
-            EXAMPLE_BOOKS.forEach { bookRepository.archiveBook(it) }
+            EXAMPLE_BOOKS.forEach { bookRepository.insert(it) }
         }
     }
 
