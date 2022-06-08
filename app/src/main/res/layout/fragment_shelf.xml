@@ -22,10 +22,6 @@
             type="android.view.View.OnClickListener" />
 
         <variable
-            name="onSortBooks"
-            type="android.view.View.OnClickListener" />
-
-        <variable
             name="onViewDetails"
             type="com.diolkaee.alexandria.common.list.BookClickListener" />
 
@@ -67,7 +63,7 @@
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/search"
                 android:layout_width="0dp"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="?colorSecondary"
                 android:background="@drawable/bg_rounded"
@@ -75,17 +71,10 @@
                 app:queryHint="Search book" />
 
             <com.google.android.material.button.MaterialButton
-                android:layout_width="48dp"
-                android:layout_height="30dp"
-                android:background="@android:color/transparent"
-                android:contentDescription="@string/shelf_button_sort_content_description"
-                android:onClick="@{onSortBooks}"
-                app:icon="@drawable/ic_sort"
-                app:iconTint="?colorSecondaryVariant" />
-
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="48dp"
-                android:layout_height="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:iconPadding="0dp"
+                app:iconGravity="textStart"
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/shelf_button_layout_content_description"
                 android:onClick="@{onChangeLayout}"

@@ -8,13 +8,9 @@ import com.diolkaee.alexandria.business.book.BookRepository
 import com.diolkaee.alexandria.business.book.EXAMPLE_BOOKS
 import com.diolkaee.alexandria.common.flowFilter
 import com.diolkaee.alexandria.common.next
+import com.diolkaee.alexandria.common.sortBy
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-
-enum class Sorting {
-    ALPHABETICAL_TITLE,
-    ALPHABETICAL_AUTHOR,
-}
 
 enum class ShelfLayout {
     LIST,
@@ -28,14 +24,11 @@ class ShelfViewModel(private val bookRepository: BookRepository) : ViewModel() {
     private val _books = bookRepository.archive.stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
     val books: StateFlow<List<Book>> = _books
         .flowFilter(_bookFilter)
+        .sortBy { it.author }
         .stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
 
     private val _scrollPosition = MutableStateFlow(0)
     val scrollPosition: StateFlow<Int> = _scrollPosition
-
-    // TODO Add functionality
-    private val _sorting = MutableStateFlow(Sorting.ALPHABETICAL_TITLE)
-    val sorting: StateFlow<Sorting> = _sorting
 
     private val _layout = MutableStateFlow(ShelfLayout.LIST)
     val layout: StateFlow<ShelfLayout> = _layout
@@ -48,10 +41,6 @@ class ShelfViewModel(private val bookRepository: BookRepository) : ViewModel() {
 
     fun setHighlightedBookIndex(newValue: Int) {
         _scrollPosition.value = newValue
-    }
-
-    fun toggleSorting() {
-        _sorting.update { it.next() }
     }
 
     fun advanceLayout() {

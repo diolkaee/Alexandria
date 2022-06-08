@@ -92,7 +92,6 @@ class ShelfFragment : Fragment() {
             }
         })
 
-        setOnSortBooks { viewModel.toggleSorting() }
         setOnAddBook { openAddDialog() }
         setOnChangeLayout { viewModel.advanceLayout() }
         setOnViewDetails { openDetails(it.isbn) }

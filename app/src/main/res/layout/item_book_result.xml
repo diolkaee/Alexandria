@@ -22,9 +22,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="@dimen/list_item_margin"
-        android:onClick="@{onClick}"
         android:contentDescription="@string/capture_item_content_description"
-        app:contentPadding="@dimen/card_padding">
+        android:onClick="@{onClick}"
+        app:contentPadding="@dimen/card_padding"
+        tools:ignore="RedundantDescriptionCheck">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -34,9 +35,9 @@
                 android:id="@+id/author"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@{book.author}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:text="@{book.author}"
                 tools:text="Oscar Wilde" />
 
             <TextView
@@ -51,11 +52,11 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:importantForAccessibility="no"
                 android:src="@{isAdded ? @drawable/ic_remove : @drawable/ic_add}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:importantForAccessibility="no"
                 tools:src="@drawable/ic_add" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

@@ -1,7 +1,7 @@
 package com.diolkaee.alexandria.ui.details
 
 import android.os.Bundle
-import android.util.Log
+import android.text.SpannableStringBuilder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -54,6 +54,7 @@ class DetailsFragment : Fragment() {
             val notes = notesInput.text?.toString()
             viewModel.setNotes(notes)
         }
+        setOnCancelNotes { notesInput.text = SpannableStringBuilder(book?.notes) }
         setOnRate {
             viewModel.setRating(it)
         }

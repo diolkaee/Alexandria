@@ -6,7 +6,6 @@
     <string name="navigation_details_label">Details</string>
 
     <string name="shelf_fab_content_description">Add Book</string>
-    <string name="shelf_button_sort_content_description">Set sorting</string>
     <string name="capture_input_hint">Search ISBN</string>
     <string name="capture_input_error">ISBNs must have 10 or 13 characters</string>
     <string name="capture_fab">Archive marked items</string>
@@ -22,5 +21,6 @@
     <string name="details_input_notes_hint">Enter your notes here</string>
     <string name="details_button_submit_notes">Submit</string>
     <string name="details_button_discard_notes">Cancel</string>
+    <string name="details_button_back_navigation_content_description">Navigate back</string>
     <string name="shelf_button_layout_content_description">Change layout</string>
 </resources>
