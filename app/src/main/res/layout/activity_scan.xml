@@ -52,7 +52,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:onClick="@{onFinish}"
-                    android:text="Finish"
+                    android:text="@string/scan_fab"
                     app:icon="@drawable/ic_bolt"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

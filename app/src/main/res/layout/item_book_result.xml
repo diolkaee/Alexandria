@@ -23,6 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="@dimen/list_item_margin"
         android:onClick="@{onClick}"
+        android:contentDescription="@string/capture_item_content_description"
         app:contentPadding="@dimen/card_padding">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -54,7 +55,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:contentDescription="Add to archive"
+                android:importantForAccessibility="no"
                 tools:src="@drawable/ic_add" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/shelf"
         android:name="com.diolkaee.alexandria.ui.shelf.ShelfFragment"
-        android:label="@string/shelf_fragment_label"
+        android:label="@string/navigation_shelf_label"
         tools:layout="@layout/fragment_shelf">
         <action
             android:id="@+id/shelf_to_capture"
@@ -21,13 +21,13 @@
     <dialog
         android:id="@+id/capture"
         android:name="com.diolkaee.alexandria.ui.capture.CaptureDialogFragment"
-        android:label="@string/capture_fragment_label"
+        android:label="@string/navigation_capture_label"
         tools:layout="@layout/dialog_capture" />
 
     <fragment
         android:id="@+id/details"
         android:name="com.diolkaee.alexandria.ui.details.DetailsFragment"
-        android:label="@string/details_fragment_label"
+        android:label="@string/navigation_details_label"
         tools:layout="@layout/fragment_details">
         <argument
             android:name="isbn"

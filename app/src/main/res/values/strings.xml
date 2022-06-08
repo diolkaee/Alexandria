@@ -1,15 +1,26 @@
 <resources>
     <string name="app_name">Alexandria</string>
-    <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="shelf_fragment_label">Shelf</string>
-    <string name="capture_fragment_label">Capture</string>
-    <string name="details_fragment_label">Details</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
+    <string name="navigation_shelf_label">Shelf</string>
+    <string name="navigation_capture_label">Capture</string>
+    <string name="navigation_details_label">Details</string>
 
-    <string name="shelf__fab__content_description">add Book</string>
-    <string name="shelf__sort__content_description">set sorting</string>
-    <string name="capture__input__hint">Search ISBN</string>
-    <string name="capture__input__error">ISBNs must have 10 or 13 characters</string>
+    <string name="shelf_fab_content_description">Add Book</string>
+    <string name="shelf_button_sort_content_description">Set sorting</string>
+    <string name="capture_input_hint">Search ISBN</string>
+    <string name="capture_input_error">ISBNs must have 10 or 13 characters</string>
+    <string name="capture_fab">Archive marked items</string>
+    <string name="capture_item_content_description">Click to mark</string>
+    <string name="scan_fab">Finish</string>
+    <string name="scan_button_scan_content_description">Scan barcode</string>
+    <string name="details_label_author">Author</string>
+    <string name="details_label_title">Title</string>
+    <string name="details_label_publisher">Publisher</string>
+    <string name="details_label_pages">Pages</string>
+    <string name="details_label_rating">Rating</string>
+    <string name="details_label_notes">Notes</string>
+    <string name="details_input_notes_hint">Enter your notes here</string>
+    <string name="details_button_submit_notes">Submit</string>
+    <string name="details_button_discard_notes">Cancel</string>
+    <string name="shelf_button_layout_content_description">Change layout</string>
 </resources>
