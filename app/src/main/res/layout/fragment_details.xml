@@ -26,12 +26,22 @@
         <variable
             name="onCancelNotes"
             type="android.view.View.OnClickListener" />
+
+        <variable
+            name="onNavigateBack"
+            type="android.view.View.OnClickListener" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:navigationOnClickListener="@{onNavigateBack}" />
 
         <FrameLayout
             android:id="@+id/preview"

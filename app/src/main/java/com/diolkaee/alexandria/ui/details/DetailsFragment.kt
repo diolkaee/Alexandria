@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.diolkaee.alexandria.databinding.FragmentDetailsBinding
 import kotlinx.coroutines.launch
@@ -26,9 +28,12 @@ class DetailsFragment : Fragment() {
     private lateinit var binding: FragmentDetailsBinding
     private val args: DetailsFragmentArgs by navArgs()
     private val viewModel: DetailsViewModel by viewModel(parameters = { parametersOf(args.isbn) })
+    private val navController: NavController
+        get() = findNavController()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentDetailsBinding.inflate(inflater, container, false)
+
         setupViews()
         setupEvents()
         return binding.root
@@ -50,8 +55,10 @@ class DetailsFragment : Fragment() {
             viewModel.setNotes(notes)
         }
         setOnRate {
-            Log.d(LOG_TAG, "Rating changed to $it")
             viewModel.setRating(it)
         }
+        setOnNavigateBack { navigateBack() }
     }
+
+    private fun navigateBack() = navController.navigateUp()
 }
