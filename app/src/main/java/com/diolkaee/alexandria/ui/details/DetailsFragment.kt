@@ -70,11 +70,11 @@ class DetailsFragment : Fragment() {
     }
 
     private fun openEditNotesDialog() {
-        val layoutInflater = LayoutInflater.from(context)
+        val layoutInflater = LayoutInflater.from(requireContext())
         val dialogBinding = DialogEditNotesBinding.inflate(layoutInflater, view as ViewGroup, false).apply {
             initialText = viewModel.book.value?.notes
         }
-        AlertDialog.Builder(context)
+        AlertDialog.Builder(requireContext())
             .setView(dialogBinding.root)
             .setPositiveButton(R.string.common_dialog_confirm) { _, _ ->
                 // We want blank notes to be handled as non existent (= null)
@@ -86,7 +86,7 @@ class DetailsFragment : Fragment() {
     }
 
     private fun openDeleteDialog() {
-        AlertDialog.Builder(context)
+        AlertDialog.Builder(requireContext())
             .setTitle(R.string.details_dialog_delete_title)
             .setMessage(R.string.details_dialog_delete_message)
             .setPositiveButton(R.string.common_dialog_confirm) { _, _ ->
