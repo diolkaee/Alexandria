@@ -13,10 +13,10 @@ Archive your local library with the Alexandria Android App.
 - `data`: The data layer. Contains networking code for accessing the backend API & Persistence provider.
 
 ## Screenshots
-<img src="./assets/shelf_list.png"  width="200" />
-<img src="./assets/shelf_pager.png"  width="200" />
-<img src="./assets/shelf_grid.png"  width="200" />
-<img src="./assets/details.png"  width="200" />
-<img src="./assets/details_edit.png"  width="200" />
-<img src="./assets/capture_scan.png"  width="200" />
+<img src="./assets/shelf_list.png"  width="200" />|
+<img src="./assets/shelf_pager.png"  width="200" />|
+<img src="./assets/shelf_grid.png"  width="200" />|
+<img src="./assets/details.png"  width="200" />|
+<img src="./assets/details_edit.png"  width="200" />|
+<img src="./assets/capture_scan.png"  width="200" />|
 <img src="./assets/capture_dialog.png"  width="200" />
