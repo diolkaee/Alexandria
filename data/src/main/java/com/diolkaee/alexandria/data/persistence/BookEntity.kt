@@ -12,7 +12,7 @@ data class BookEntity(
     val publisher: String,
     val pageCount: Int?,
     val thumbnailUrl: String?,
-    val read: Boolean,
+    val marked: Boolean,
     val rating: Float?,
     val notes: String?,
 )

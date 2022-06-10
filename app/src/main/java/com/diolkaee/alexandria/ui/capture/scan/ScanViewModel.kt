@@ -24,7 +24,7 @@ class ScanViewModel(private val bookRepository: BookRepository) : ViewModel() {
      */
     fun searchBooks(isbns: List<Long>) {
         for (isbn in isbns) {
-            if (!currentSearch.contains(isbn) && !_searchResults.value.containsIsbn(isbn)) {
+            if (!currentSearch.contains(isbn) && !searchResults.value.containsIsbn(isbn)) {
                 currentSearch.add(isbn)
                 viewModelScope.launch {
                     val results = bookRepository.fetch(isbn)

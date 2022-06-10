@@ -20,6 +20,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.diolkaee.alexandria.R
 import com.diolkaee.alexandria.databinding.ActivityScanBinding
 import com.diolkaee.alexandria.scanner.BarcodeScanner
 import kotlinx.coroutines.launch
@@ -90,7 +91,7 @@ class ScanActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(
                     this,
-                    "Permissions not granted by the user.",
+                    getString(R.string.scan_permission_denied),
                     Toast.LENGTH_SHORT
                 ).show()
                 finish()

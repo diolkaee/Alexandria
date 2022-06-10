@@ -19,6 +19,8 @@
         <!-- component styles -->
         <item name="bottomSheetDialogTheme">@style/ThemeOverlay.BottomSheetDialog</item>
         <item name="toolbarStyle">@style/ThemeOverlay.Toolbar</item>
+        <!-- Hacky way to change the SearchView's cursor color: https://stackoverflow.com/a/28311351 -->
+        <item name="autoCompleteTextViewStyle">@style/SearchView</item>
     </style>
 
     <style name="Theme.Alexandria.NoActionBar">
@@ -47,4 +49,7 @@
         <item name="navigationIcon">@drawable/ic_arrow_back</item>
     </style>
 
+    <style name="SearchView" parent="Widget.AppCompat.AutoCompleteTextView">
+        <item name="android:textCursorDrawable">@drawable/ic_search_cursor</item>
+    </style>
 </resources>

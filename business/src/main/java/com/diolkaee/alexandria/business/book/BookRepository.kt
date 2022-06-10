@@ -26,7 +26,9 @@ class BookRepository(
         bookDao.insertAll(books.map { it.toEntity() })
     }
 
-    suspend fun retrieve(isbn: Long) = bookDao.get(isbn).toDomainObject()
+    suspend fun retrieve(isbn: Long) = bookDao.get(isbn)?.toDomainObject()
+
+    suspend fun remove(book: Book) = bookDao.delete(book.toEntity())
 
     suspend fun fetch(isbn: Long): List<Book> = try {
         apiService.retrieveBooks(isbn).map { it.toDomainObject() }
@@ -57,7 +59,7 @@ private fun BookEntity.toDomainObject() = Book(
     publisher = publisher,
     pageCount = pageCount,
     thumbnailUrl = thumbnailUrl,
-    read = read,
+    marked = marked,
     rating = rating,
     notes = notes,
 )
@@ -70,7 +72,7 @@ private fun Book.toEntity() = BookEntity(
     publisher = publisher,
     pageCount = pageCount,
     thumbnailUrl = thumbnailUrl,
-    read = read,
+    marked = marked,
     rating = rating,
     notes = notes,
 )

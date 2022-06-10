@@ -57,7 +57,7 @@ class CaptureDialogFragment : BottomSheetDialogFragment() {
         val error: String? = when {
             text.isNullOrBlank() -> null
             // This branch is true if text is null or blank, but then we return null before so no error is shown
-            !isSearchValid -> requireContext().resources.getString(R.string.capture_input_error)
+            !isSearchValid -> requireContext().getString(R.string.capture_input_error)
             else -> null
         }
 

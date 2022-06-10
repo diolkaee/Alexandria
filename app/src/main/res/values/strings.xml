@@ -5,6 +5,8 @@
     <string name="navigation_capture_label">Capture</string>
     <string name="navigation_details_label">Details</string>
 
+    <string name="common_dialog_confirm">Confirm</string>
+    <string name="common_dialog_cancel">Cancel</string>
     <string name="shelf_fab_content_description">Add Book</string>
     <string name="capture_input_hint">Search ISBN</string>
     <string name="capture_input_error">ISBNs must have 10 or 13 characters</string>
@@ -12,15 +14,18 @@
     <string name="capture_item_content_description">Click to mark</string>
     <string name="scan_fab">Finish</string>
     <string name="scan_button_scan_content_description">Scan barcode</string>
+    <string name="scan_permission_denied">Permissions not granted by the user.</string>
     <string name="details_label_author">Author</string>
     <string name="details_label_title">Title</string>
     <string name="details_label_publisher">Publisher</string>
     <string name="details_label_pages">Pages</string>
     <string name="details_label_rating">Rating</string>
     <string name="details_label_notes">Notes</string>
-    <string name="details_input_notes_hint">Enter your notes here</string>
-    <string name="details_button_submit_notes">Submit</string>
-    <string name="details_button_discard_notes">Cancel</string>
     <string name="details_button_back_navigation_content_description">Navigate back</string>
+    <string name="details_dialog_delete_title">Delete</string>
+    <string name="details_dialog_delete_message">Do you want to delete this book from your archive?</string>
+    <string name="details_dialog_notes_input_hint">Enter your notes</string>
+    <string name="details_menu_action_delete">Delete</string>
+    <string name="details_menu_action_mark">Mark</string>
     <string name="shelf_button_layout_content_description">Change layout</string>
 </resources>

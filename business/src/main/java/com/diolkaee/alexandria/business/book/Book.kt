@@ -55,7 +55,7 @@ data class Book(
     val title: String,
     val publicationYear: String,
     val publisher: String,
-    val read: Boolean = false,
+    val marked: Boolean = false,
     val pageCount: Int?,
     val thumbnailUrl: String? = null,
     @FloatRange(from = 1.0, to = 5.0)

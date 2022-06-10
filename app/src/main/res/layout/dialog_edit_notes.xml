@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="initialText"
+            type="String" />
+    </data>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/details_dialog_notes_input_hint"
+        app:hintTextColor="@color/black"
+        android:textColorHint="?colorSecondary">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dialog_edit_text_height"
+            android:background="@drawable/inset_dialog_edit"
+            android:gravity="top"
+            android:inputType="textMultiLine"
+            android:text="@{initialText}"
+            tools:text="@tools:sample/lorem/random"/>
+    </com.google.android.material.textfield.TextInputLayout>
+</layout>

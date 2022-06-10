@@ -1,10 +1,11 @@
 package com.diolkaee.alexandria.ui.details
 
+import android.app.AlertDialog
 import android.os.Bundle
-import android.text.SpannableStringBuilder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -12,6 +13,8 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.diolkaee.alexandria.R
+import com.diolkaee.alexandria.databinding.DialogEditNotesBinding
 import com.diolkaee.alexandria.databinding.FragmentDetailsBinding
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -44,22 +47,62 @@ class DetailsFragment : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.book.collect {
                     binding.book = it
+                    if (it != null) {
+                        setMarkedMenuItem(it.marked)
+                    }
                 }
             }
         }
     }
 
     private fun setupEvents() = with(binding) {
-        setOnSubmitNotes {
-            val notes = notesInput.text?.toString()
-            viewModel.setNotes(notes)
+        setOnRate { viewModel.setRating(it) }
+        setOnNavigateUp { navController.navigateUp() }
+        setOnEditNotes { openEditNotesDialog() }
+        toolbar.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.mark -> viewModel.toggleMark()
+                R.id.delete -> openDeleteDialog()
+                else -> throw IllegalArgumentException("No menu item with id: ${item.itemId}")
+            }
+            true
         }
-        setOnCancelNotes { notesInput.text = SpannableStringBuilder(book?.notes) }
-        setOnRate {
-            viewModel.setRating(it)
-        }
-        setOnNavigateBack { navigateBack() }
     }
 
-    private fun navigateBack() = navController.navigateUp()
+    private fun openEditNotesDialog() {
+        val layoutInflater = LayoutInflater.from(context)
+        val dialogBinding = DialogEditNotesBinding.inflate(layoutInflater, view as ViewGroup, false).apply {
+            initialText = viewModel.book.value?.notes
+        }
+        AlertDialog.Builder(context)
+            .setView(dialogBinding.root)
+            .setPositiveButton(getString(R.string.common_dialog_confirm)) { _, _ ->
+                // We want blank notes to be handled as non existent (= null)
+                val input = dialogBinding.input.text?.ifBlank { null }?.toString()
+                viewModel.setNotes(input)
+            }
+            .setNegativeButton(getString(R.string.common_dialog_cancel)) { _, _ -> Unit }
+            .show()
+    }
+
+    private fun openDeleteDialog() {
+        AlertDialog.Builder(context)
+            .setTitle(getString(R.string.details_dialog_delete_title))
+            .setMessage(getString(R.string.details_dialog_delete_message))
+            .setPositiveButton(getString(R.string.common_dialog_confirm)) { _, _ ->
+                viewModel.deleteBook()
+                navController.navigateUp()
+            }
+            .setNegativeButton(getString(R.string.common_dialog_cancel)) { _, _ -> Unit }
+            .show()
+    }
+
+    /** This cannot be done via checked state:
+     * https://stackoverflow.com/questions/6683186/menuitems-checked-state-is-not-shown-correctly-by-its-icon
+     */
+    private fun setMarkedMenuItem(isMarked: Boolean) {
+        val markMenuItem = binding.toolbar.menu.findItem(R.id.mark)
+        val iconId = if (isMarked) R.drawable.ic_check else R.drawable.ic_awesome
+        markMenuItem.icon = ResourcesCompat.getDrawable(resources, iconId, null)
+    }
 }

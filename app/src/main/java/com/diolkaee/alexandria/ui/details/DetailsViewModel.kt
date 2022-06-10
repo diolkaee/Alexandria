@@ -37,6 +37,23 @@ class DetailsViewModel(
         }
     }
 
+    fun toggleMark() {
+        val wasMarked = _book.value?.marked == true
+        val updatedBook = _book.value?.copy(marked = !wasMarked)
+        if (updatedBook != null) {
+            updateBook(updatedBook)
+        }
+    }
+
+    fun deleteBook() {
+        val book = _book.value
+        if (book != null) {
+            viewModelScope.launch {
+                bookRepository.remove(book)
+            }
+        }
+    }
+
     private fun updateBook(newValue: Book) {
         _book.update { newValue }
         viewModelScope.launch {

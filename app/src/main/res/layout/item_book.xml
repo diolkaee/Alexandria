@@ -26,12 +26,12 @@
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:checked="@{book.read}"
+            android:checked="@{book.marked}"
             android:text="@{book.title}"
-            app:drawableEndCompat="@drawable/ic_read_indicator"
+            app:drawableEndCompat="@drawable/switch_mark"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="A Wild Sheep Chase" />
+            tools:text="The picture of Dorian Gray" />
 
     </com.google.android.material.card.MaterialCardView>
 </layout>

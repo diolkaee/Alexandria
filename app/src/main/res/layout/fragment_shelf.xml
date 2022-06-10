@@ -78,8 +78,7 @@
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/shelf_button_layout_content_description"
                 android:onClick="@{onChangeLayout}"
-                app:icon="@drawable/ic_bolt"
-                app:iconTint="?colorSecondaryVariant" />
+                app:icon="@drawable/ic_bolt" />
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView

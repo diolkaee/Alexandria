@@ -20,15 +20,11 @@
             type="com.diolkaee.alexandria.ui.details.RatingListener" />
 
         <variable
-            name="onSubmitNotes"
+            name="onNavigateUp"
             type="android.view.View.OnClickListener" />
 
         <variable
-            name="onCancelNotes"
-            type="android.view.View.OnClickListener" />
-
-        <variable
-            name="onNavigateBack"
+            name="onEditNotes"
             type="android.view.View.OnClickListener" />
     </data>
 
@@ -42,7 +38,8 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:navigationContentDescription="@string/details_button_back_navigation_content_description"
-            app:navigationOnClickListener="@{onNavigateBack}" />
+            app:menu="@menu/details_toolbar"
+            app:navigationOnClickListener="@{onNavigateUp}" />
 
         <FrameLayout
             android:id="@+id/preview"
@@ -82,7 +79,6 @@
                     android:layout_height="wrap_content"
                     android:text="@string/details_label_author"
                     android:textColor="?colorOnPrimary"
-                    app:layout_constraintBottom_toBottomOf="@id/author"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@id/author" />
 
@@ -112,7 +108,6 @@
                     android:layout_height="wrap_content"
                     android:text="@string/details_label_title"
                     android:textColor="?colorOnPrimary"
-                    app:layout_constraintBottom_toBottomOf="@id/title"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@id/title" />
 
@@ -142,7 +137,6 @@
                     android:layout_height="wrap_content"
                     android:text="@string/details_label_publisher"
                     android:textColor="?colorOnPrimary"
-                    app:layout_constraintBottom_toBottomOf="@id/publisher"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@id/publisher" />
 
@@ -173,7 +167,6 @@
                     android:text="@string/details_label_pages"
                     android:textColor="?colorOnPrimary"
                     android:visibility="@{book.pageCount != null ? View.VISIBLE : View.GONE}"
-                    app:layout_constraintBottom_toBottomOf="@id/page_count"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@id/page_count" />
 
@@ -234,47 +227,25 @@
                     android:layout_height="wrap_content"
                     android:text="@string/details_label_notes"
                     android:textColor="?colorOnPrimary"
-                    app:layout_constraintBottom_toBottomOf="@id/notes_layout"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/notes_layout" />
+                    app:layout_constraintTop_toTopOf="@id/notes" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/notes_layout"
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/notes"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:hint="@string/details_input_notes_hint"
-                    android:textColor="?colorOnPrimary"
+                    android:onClick="@{onEditNotes}"
+                    app:contentPadding="@dimen/card_padding"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/label_guideline"
                     app:layout_constraintTop_toBottomOf="@id/rating_barrier">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/notes_input"
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:inputType="textMultiLine"
-                        android:text="@{book.notes}" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/submit_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="@{onSubmitNotes}"
-                    android:text="@string/details_button_submit_notes"
-                    app:layout_constraintStart_toStartOf="@id/notes_layout"
-                    app:layout_constraintTop_toBottomOf="@id/notes_layout" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/cancel_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="64dp"
-                    android:backgroundTint="?colorSecondary"
-                    android:text="@string/details_button_discard_notes"
-                    android:textColor="@color/black"
-                    app:layout_constraintStart_toEndOf="@id/submit_button"
-                    app:layout_constraintTop_toBottomOf="@id/notes_layout" />
+                        android:text="@{book.notes ?? @string/details_dialog_notes_input_hint}"
+                        tools:text="@tools:sample/lorem/random" />
+                </com.google.android.material.card.MaterialCardView>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
     </LinearLayout>
