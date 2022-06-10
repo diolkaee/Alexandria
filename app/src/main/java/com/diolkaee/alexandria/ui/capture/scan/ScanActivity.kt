@@ -91,7 +91,7 @@ class ScanActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(
                     this,
-                    getString(R.string.scan_permission_denied),
+                    R.string.scan_permission_denied,
                     Toast.LENGTH_SHORT
                 ).show()
                 finish()

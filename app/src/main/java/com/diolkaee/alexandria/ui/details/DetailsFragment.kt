@@ -76,24 +76,24 @@ class DetailsFragment : Fragment() {
         }
         AlertDialog.Builder(context)
             .setView(dialogBinding.root)
-            .setPositiveButton(getString(R.string.common_dialog_confirm)) { _, _ ->
+            .setPositiveButton(R.string.common_dialog_confirm) { _, _ ->
                 // We want blank notes to be handled as non existent (= null)
                 val input = dialogBinding.input.text?.ifBlank { null }?.toString()
                 viewModel.setNotes(input)
             }
-            .setNegativeButton(getString(R.string.common_dialog_cancel)) { _, _ -> Unit }
+            .setNegativeButton(R.string.common_dialog_cancel) { _, _ -> Unit }
             .show()
     }
 
     private fun openDeleteDialog() {
         AlertDialog.Builder(context)
-            .setTitle(getString(R.string.details_dialog_delete_title))
-            .setMessage(getString(R.string.details_dialog_delete_message))
-            .setPositiveButton(getString(R.string.common_dialog_confirm)) { _, _ ->
+            .setTitle(R.string.details_dialog_delete_title)
+            .setMessage(R.string.details_dialog_delete_message)
+            .setPositiveButton(R.string.common_dialog_confirm) { _, _ ->
                 viewModel.deleteBook()
                 navController.navigateUp()
             }
-            .setNegativeButton(getString(R.string.common_dialog_cancel)) { _, _ -> Unit }
+            .setNegativeButton(R.string.common_dialog_cancel) { _, _ -> Unit }
             .show()
     }
 
