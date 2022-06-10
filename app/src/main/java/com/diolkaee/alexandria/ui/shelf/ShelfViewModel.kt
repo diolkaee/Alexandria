@@ -24,7 +24,7 @@ class ShelfViewModel(private val bookRepository: BookRepository) : ViewModel() {
     private val _books = bookRepository.archive.stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
     val books: StateFlow<List<Book>> = _books
         .flowFilter(_bookFilter)
-        .sortBy { it.author }
+        .sortBy { it.author.surname }
         .stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
 
     private val _scrollPosition = MutableStateFlow(0)
@@ -58,4 +58,4 @@ class ShelfViewModel(private val bookRepository: BookRepository) : ViewModel() {
 
 // TODO Implement fuzzy search
 private fun Book.contains(searchQuery: String) =
-    this.author.contains(searchQuery, ignoreCase = true) || this.title.contains(searchQuery, ignoreCase = true)
+    author.toString().contains(searchQuery, ignoreCase = true) || this.title.contains(searchQuery, ignoreCase = true)

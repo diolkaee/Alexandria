@@ -87,7 +87,7 @@ class BookListAdapter(private val clickListener: BookClickListener) :
 private fun List<Book>.toBookListItems() = mutableListOf<BookListItem>().also { items ->
     this.groupBy { book -> book.author }
         .forEach { (author, oeuvre) ->
-            val authorItem = BookListItem.AuthorItem(author)
+            val authorItem = BookListItem.AuthorItem(author.toString())
             val bookItems = oeuvre.map { BookListItem.BookItem(it) }
             items.addAll(listOf(authorItem) + bookItems)
         }

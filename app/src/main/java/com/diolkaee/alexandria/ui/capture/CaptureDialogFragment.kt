@@ -68,7 +68,7 @@ class CaptureDialogFragment : BottomSheetDialogFragment() {
 
 private fun TextInputEditText.onSubmit(func: (text: CharSequence?) -> Unit) {
     setOnEditorActionListener { _, actionId, _ ->
-        if (actionId == EditorInfo.IME_ACTION_DONE) {
+        if (actionId == EditorInfo.IME_ACTION_NEXT) {
             func(text)
         }
         // Allow default action

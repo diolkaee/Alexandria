@@ -44,7 +44,7 @@ class BookRepository(
 private fun BookData.toDomainObject() = Book(
     isbn = isbn!!.toLong(),
     title = title,
-    author = authors.first().name,
+    author = authors.first().name.toAuthor(),
     pageCount = number_of_pages,
     publicationYear = publish_date,
     publisher = publishers.first().name,
@@ -54,7 +54,7 @@ private fun BookData.toDomainObject() = Book(
 private fun BookEntity.toDomainObject() = Book(
     isbn = isbn,
     title = title,
-    author = author,
+    author = Author(authorFirstName, authorSurname),
     publicationYear = publicationYear,
     publisher = publisher,
     pageCount = pageCount,
@@ -67,7 +67,8 @@ private fun BookEntity.toDomainObject() = Book(
 private fun Book.toEntity() = BookEntity(
     isbn = isbn,
     title = title,
-    author = author,
+    authorFirstName = author.firstName,
+    authorSurname = author.surname,
     publicationYear = publicationYear,
     publisher = publisher,
     pageCount = pageCount,
@@ -76,3 +77,9 @@ private fun Book.toEntity() = BookEntity(
     rating = rating,
     notes = notes,
 )
+
+private fun String.toAuthor(): Author {
+    val surname = this.substringAfterLast(' ')
+    val firstName = if (surname == this) null else this.substringBeforeLast(" ")
+    return Author(firstName = firstName, surname = surname)
+}

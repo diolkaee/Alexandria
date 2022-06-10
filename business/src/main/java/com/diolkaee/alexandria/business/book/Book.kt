@@ -7,7 +7,7 @@ import androidx.annotation.FloatRange
 val EXAMPLE_BOOKS = listOf(
     Book(
         isbn = 9780141439570,
-        author = "Oscar Wilde",
+        author = Author("Oscar", "Wilde"),
         title = "The picture of Dorian Gray",
         publisher = "Penguins Books",
         publicationYear = "2003",
@@ -15,7 +15,7 @@ val EXAMPLE_BOOKS = listOf(
     ),
     Book(
         isbn = 9798664341737,
-        author = "Mary Shelley",
+        author = Author("Mary", "Shelley"),
         title = "Frankenstein",
         publisher = "Penguins Books",
         publicationYear = "2020",
@@ -24,7 +24,7 @@ val EXAMPLE_BOOKS = listOf(
     ),
     Book(
         isbn = 9781713326472,
-        author = "Robert Louis Stevenson",
+        author = Author("Robert Louis", "Stevenson"),
         title = "The strange case of Dr. Jekyll and Mr. Hyde",
         publisher = "Penguins Books",
         publicationYear = "2019",
@@ -32,7 +32,7 @@ val EXAMPLE_BOOKS = listOf(
     ),
     Book(
         isbn = 9780393347098,
-        author = "Franz Kafka",
+        author = Author("Franz", "Kafka"),
         title = "The metamorphosis",
         publisher = "Penguins Books",
         publicationYear = "1972",
@@ -40,7 +40,7 @@ val EXAMPLE_BOOKS = listOf(
     ),
     Book(
         isbn = 9789083127033,
-        author = "F. Scott Fitzgerald",
+        author = Author("F. Scott", "Fitzgerald"),
         title = "The great Gatsby",
         publisher = "Penguins Books",
         publicationYear = "2021",
@@ -51,7 +51,7 @@ val EXAMPLE_BOOKS = listOf(
 
 data class Book(
     val isbn: Long,
-    val author: String,
+    val author: Author,
     val title: String,
     val publicationYear: String,
     val publisher: String,
@@ -62,3 +62,10 @@ data class Book(
     val rating: Float? = null,
     val notes: String? = null
 )
+
+data class Author(val firstName: String?, val surname: String) {
+    override fun toString(): String {
+        return if (firstName != null) "$firstName $surname"
+        else surname
+    }
+}

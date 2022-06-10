@@ -43,7 +43,7 @@
                 android:layout_marginTop="16dp"
                 android:gravity="center_horizontal"
                 android:textColor="?colorSecondaryVariant"
-                android:text="@{book.author}"
+                android:text="@{book.author.toString()}"
                 tools:text="Oscar Wilde" />
 
             <TextView

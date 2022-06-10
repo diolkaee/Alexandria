@@ -30,7 +30,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="@dimen/activity_margin_horizontal"
-        android:paddingVertical="@dimen/activity_margin_vertical">
+        android:paddingVertical="@dimen/activity_margin_vertical"
+        tools:theme="?bottomSheetDialogTheme">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/search_layout"
@@ -38,6 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:hint="@string/capture_input_hint"
+            app:hintTextColor="?colorSecondaryVariant"
             app:error="@{inputError}"
             app:layout_constraintEnd_toStartOf="@id/scan_button"
             app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +50,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:importantForAutofill="no"
-                android:textColor="?colorPrimary"
                 android:inputType="number"
                 android:maxLength="13" />
         </com.google.android.material.textfield.TextInputLayout>
