@@ -45,44 +45,41 @@ class BookDatabaseTest {
     }
 
     @Test
-    fun `GIVEN a book is not present in the database WHEN the book is inserted THEN it can be retrieved`(): Unit =
-        runBlocking {
-            // Given
-            assert(dao.get(TEST_ENTITY.isbn) == null)
+    fun insertBook(): Unit = runBlocking {
+        // Given
+        assert(dao.get(TEST_ENTITY.isbn) == null)
 
-            // WHEN
-            dao.insert(TEST_ENTITY)
+        // WHEN
+        dao.insert(TEST_ENTITY)
 
-            // THEN
-            assert(dao.get(TEST_ENTITY.isbn) == TEST_ENTITY)
+        // THEN
+        assert(dao.get(TEST_ENTITY.isbn) == TEST_ENTITY)
+    }
+
+    @Test
+    fun updateBook(): Unit = runBlocking {
+        // Given
+        dao.insert(TEST_ENTITY)
+        assert(dao.get(TEST_ENTITY.isbn) == TEST_ENTITY)
+
+        // WHEN
+        val alteredCopy = TEST_ENTITY.copy(title = "The Happy Prince")
+        dao.insert(alteredCopy)
+
+        // THEN
+        assert(dao.get(TEST_ENTITY.isbn) == alteredCopy)
         }
 
     @Test
-    fun `GIVEN a book is present in the database WHEN an altered copy is inserted THEN the database entry is updated`(): Unit =
-        runBlocking {
-            // Given
-            dao.insert(TEST_ENTITY)
-            assert(dao.get(TEST_ENTITY.isbn) == TEST_ENTITY)
+    fun deleteBook(): Unit = runBlocking {
+        // Given
+        dao.insert(TEST_ENTITY)
+        assert(dao.get(TEST_ENTITY.isbn) == TEST_ENTITY)
 
-            // WHEN
-            val alteredCopy = TEST_ENTITY.copy(title = "The Happy Prince")
-            dao.insert(alteredCopy)
+        // WHEN
+        dao.delete(TEST_ENTITY)
 
-            // THEN
-            assert(dao.get(TEST_ENTITY.isbn) == alteredCopy)
-        }
-
-    @Test
-    fun `GIVEN a book is present in the database WHEN it is deleted THEN the database entry is deleted`(): Unit =
-        runBlocking {
-            // Given
-            dao.insert(TEST_ENTITY)
-            assert(dao.get(TEST_ENTITY.isbn) == TEST_ENTITY)
-
-            // WHEN
-            dao.delete(TEST_ENTITY)
-
-            // THEN
-            assert(dao.get(TEST_ENTITY.isbn) == null)
-        }
+        // THEN
+        assert(dao.get(TEST_ENTITY.isbn) == null)
+    }
 }
