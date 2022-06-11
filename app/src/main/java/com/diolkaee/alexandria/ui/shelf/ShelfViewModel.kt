@@ -56,6 +56,5 @@ class ShelfViewModel(private val bookRepository: BookRepository) : ViewModel() {
     }
 }
 
-// TODO Implement fuzzy search
 private fun Book.contains(searchQuery: String) =
     author.toString().contains(searchQuery, ignoreCase = true) || this.title.contains(searchQuery, ignoreCase = true)
