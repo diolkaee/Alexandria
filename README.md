@@ -12,6 +12,9 @@ Archive your local library with the Alexandria Android App.
 - `business`: The business or domain layer. Contains repositories and mediates between `app` and `data`.
 - `data`: The data layer. Contains networking code for accessing the backend API & Persistence provider.
 
+## Contributions
+This app would not be possible without the amazing [OpenLibrary project]((https://openlibrary.org/))!
+
 ## Screenshots
 <img src="./assets/shelf_list.png"  width="200" />|
 <img src="./assets/shelf_pager.png"  width="200" />|

@@ -2,9 +2,8 @@ buildscript {
     ext.koin_version = "3.2.0"
     ext.coroutines_version = "1.6.1"
     ext.detekt_version = "1.20.0"
-    repositories {
-        google()
-    }
+    ext.mockk_version = "1.12.4"
+
     dependencies {
         classpath "com.android.tools.build:gradle:7.2.1"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.21"
@@ -20,10 +19,6 @@ plugins {
 
 subprojects {
     apply plugin: 'io.gitlab.arturbosch.detekt'
-    repositories {
-        google()
-        mavenCentral()
-    }
     dependencies {
         detektPlugins "io.gitlab.arturbosch.detekt:detekt-formatting:$detekt_version" // ktlint
     }

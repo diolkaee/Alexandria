@@ -9,7 +9,7 @@ data class BookListData(val results: List<BookData>)
 @JsonClass(generateAdapter = true)
 data class BookData(
     @Transient
-    val isbn: String? = null, // Transient requires null, this will be nonnull after deserialization
+    val isbn: String? = null, // Transient requires null, [BookListAdapter] always sets this
     val publishers: List<PublisherData>,
     val title: String,
     val number_of_pages: Int?,
