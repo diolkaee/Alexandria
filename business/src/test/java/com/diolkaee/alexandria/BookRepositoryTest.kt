@@ -7,12 +7,12 @@ import com.diolkaee.alexandria.data.networking.*
 import com.diolkaee.alexandria.data.persistence.BookDao
 import com.diolkaee.alexandria.data.persistence.BookEntity
 import io.mockk.coEvery
-import io.mockk.coJustRun
 import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking
+import org.junit.Before
 import org.junit.Test
 
 private val TEST_DATA = BookData(
@@ -51,89 +51,73 @@ private val TEST_BOOK = Book(
 )
 
 internal class BookRepositoryTest {
-    @Test
-    fun `GIVEN any state WHEN the archive is called THEN it contains all persisted books`(): Unit = runBlocking {
-        // GIVEN
-        val given = Given()
+    private lateinit var remoteSource: ApiService
+    private lateinit var localSource: BookDao
+    private lateinit var repository: BookRepository
 
+    @Before
+    fun createRepository() {
+        remoteSource = mockk<ApiService> {
+            coEvery { this@mockk.retrieveBooks(TEST_BOOK.isbn) } returns listOf(TEST_DATA)
+        }
+        localSource = mockk<BookDao>(relaxed = true) {
+            coEvery { this@mockk.get(TEST_BOOK.isbn) } returns TEST_ENTITY
+            coEvery { this@mockk.getAll() } returns flowOf(listOf(TEST_ENTITY))
+        }
+        repository = BookRepository(remoteSource, localSource)
+    }
+
+    @Test
+    fun `WHEN the archive is called THEN it contains all persisted books`(): Unit = runBlocking {
         // WHEN
-        val archive = given.repository.archive
+        val archive = repository.archive
 
         // THEN
         assert(archive.first() == listOf(TEST_BOOK))
     }
 
     @Test
-    fun `GIVEN any state WHEN a book is inserted THEN it is persisted`(): Unit = runBlocking {
-        // GIVEN
-        val given = Given()
-
+    fun `WHEN a book is inserted THEN it is persisted`(): Unit = runBlocking {
         // WHEN
-        given.repository.insert(TEST_BOOK)
+        repository.insert(TEST_BOOK)
 
         // THEN
-        coVerify { given.bookDao.insert(any()) }
+        coVerify { localSource.insert(any()) }
     }
 
     @Test
-    fun `GIVEN any state WHEN multiple books are inserted THEN they are persisted`(): Unit = runBlocking {
-        // GIVEN
-        val given = Given()
-
+    fun `WHEN multiple books are inserted THEN they are persisted`(): Unit = runBlocking {
         // WHEN
-        given.repository.insertAll(listOf(TEST_BOOK))
+        repository.insertAll(listOf(TEST_BOOK))
 
         // THEN
-        coVerify { given.bookDao.insertAll(any()) }
+        coVerify { localSource.insertAll(any()) }
     }
 
     @Test
-    fun `GIVEN any state WHEN an isbn is retrieved THEN the book is retrieved from persistence`(): Unit = runBlocking {
-        // GIVEN
-        val given = Given()
-
+    fun `WHEN an isbn is retrieved THEN the book is retrieved from persistence`(): Unit = runBlocking {
         // WHEN
-        val book = given.repository.retrieve(TEST_BOOK.isbn)
+        val book = repository.retrieve(TEST_BOOK.isbn)
 
         // THEN
         assert(book == TEST_BOOK)
     }
 
     @Test
-    fun `GIVEN any state WHEN a book is removed THEN it is deleted from persistence`(): Unit = runBlocking {
-        // GIVEN
-        val given = Given()
-
+    fun `WHEN a book is removed THEN it is deleted from persistence`(): Unit = runBlocking {
         // WHEN
-        given.repository.remove(TEST_BOOK)
+        repository.remove(TEST_BOOK)
 
         // THEN
-        coVerify { given.bookDao.delete(TEST_ENTITY) }
+        coVerify { localSource.delete(TEST_ENTITY) }
     }
 
     @Test
-    fun `GIVEN any state WHEN an isbn is fetched THEN the book is fetched from API`(): Unit = runBlocking {
-        // GIVEN
-        val given = Given()
-
+    fun `WHEN an isbn is fetched THEN the book is fetched from API`(): Unit = runBlocking {
         // WHEN
-        val books = given.repository.fetch(TEST_BOOK.isbn)
+        val books = repository.fetch(TEST_BOOK.isbn)
 
         // THEN
         assert(books.contains(TEST_BOOK))
-    }
-
-    private class Given {
-        val apiService = mockk<ApiService> {
-            coEvery { this@mockk.retrieveBooks(TEST_BOOK.isbn) } returns listOf(TEST_DATA)
-        }
-        val bookDao = mockk<BookDao> {
-            coEvery { this@mockk.get(TEST_BOOK.isbn) } returns TEST_ENTITY
-            coEvery { this@mockk.getAll() } returns flowOf(listOf(TEST_ENTITY))
-            coJustRun { this@mockk.insert(TEST_ENTITY) }
-            coJustRun { this@mockk.insertAll(listOf(TEST_ENTITY)) }
-            coJustRun { this@mockk.delete(TEST_ENTITY) }
-        }
-        val repository = BookRepository(apiService, bookDao)
     }
 }
