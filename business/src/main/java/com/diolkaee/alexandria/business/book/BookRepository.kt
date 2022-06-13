@@ -40,9 +40,8 @@ class BookRepository(
     }
 }
 
-// TODO Improve entity mapping
 private fun BookData.toDomainObject() = Book(
-    isbn = isbn!!.toLong(),
+    isbn = isbn!!.toLong(), // isbn will always be set by [BookListAdapter]
     title = title,
     author = authors.first().name.toAuthor(),
     pageCount = number_of_pages,
@@ -80,6 +79,6 @@ private fun Book.toEntity() = BookEntity(
 
 private fun String.toAuthor(): Author {
     val surname = this.substringAfterLast(' ')
-    val firstName = if (surname == this) null else this.substringBeforeLast(" ")
+    val firstName = if (surname == this) null else this.substringBeforeLast(' ')
     return Author(firstName = firstName, surname = surname)
 }

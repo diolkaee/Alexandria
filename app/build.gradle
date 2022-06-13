@@ -29,7 +29,7 @@ android {
             applicationIdSuffix '.beta'
         }
         release {
-            // TODO Remove for prod
+            // TODO Configure signing for PlayStore release
             signingConfig signingConfigs.debug
             minifyEnabled true
             shrinkResources true

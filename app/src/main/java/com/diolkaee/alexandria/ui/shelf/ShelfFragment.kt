@@ -17,8 +17,6 @@ import com.diolkaee.alexandria.databinding.FragmentShelfBinding
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-private const val LOG_TAG = "ShelfFragment"
-
 class ShelfFragment : Fragment() {
     private lateinit var binding: FragmentShelfBinding
     private val viewModel: ShelfViewModel by viewModel()

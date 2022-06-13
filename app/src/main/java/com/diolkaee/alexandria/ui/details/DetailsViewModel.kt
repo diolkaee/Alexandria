@@ -9,7 +9,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-// TODO Handle invalid isbn
 class DetailsViewModel(
     private val isbn: Long,
     private val bookRepository: BookRepository

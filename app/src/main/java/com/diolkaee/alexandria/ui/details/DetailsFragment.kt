@@ -24,8 +24,6 @@ fun interface RatingListener {
     operator fun invoke(rating: Float)
 }
 
-private const val LOG_TAG = "DetailsFragment"
-
 class DetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentDetailsBinding
@@ -90,8 +88,7 @@ class DetailsFragment : Fragment() {
             .setTitle(R.string.details_dialog_delete_title)
             .setMessage(R.string.details_dialog_delete_message)
             .setPositiveButton(R.string.common_dialog_confirm) { _, _ ->
-                viewModel.deleteBook()
-                navController.navigateUp()
+                deleteBookAndNavigateUp()
             }
             .setNegativeButton(R.string.common_dialog_cancel) { _, _ -> Unit }
             .show()
@@ -104,5 +101,10 @@ class DetailsFragment : Fragment() {
         val markMenuItem = binding.toolbar.menu.findItem(R.id.mark)
         val iconId = if (isMarked) R.drawable.ic_check else R.drawable.ic_awesome
         markMenuItem.icon = ResourcesCompat.getDrawable(resources, iconId, null)
+    }
+
+    private fun deleteBookAndNavigateUp() {
+        viewModel.deleteBook()
+        navController.navigateUp()
     }
 }
