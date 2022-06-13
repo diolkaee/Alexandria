@@ -2,8 +2,6 @@
 
 package com.diolkaee.alexandria.business.book
 
-import androidx.annotation.FloatRange
-
 val EXAMPLE_BOOKS = listOf(
     Book(
         isbn = 9780141439570,
@@ -58,7 +56,7 @@ data class Book(
     val marked: Boolean = false,
     val pageCount: Int?,
     val thumbnailUrl: String? = null,
-    @FloatRange(from = 1.0, to = 5.0)
+    // Ranges between 0.0f and 5.0f, using @FloatRange would require Androidx dependencies
     val rating: Float? = null,
     val notes: String? = null
 )
