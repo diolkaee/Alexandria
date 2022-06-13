@@ -3,6 +3,7 @@ Archive your local library with the Alexandria Android App.
 
 ## Features
 - `Archive`: Archive your books by scanning their barcode or entering an ISBN
+- `Multiple Layouts`: Browse your library as a list, a book shelf or a combination of both
 - `Search`: Search your archive by Author or Title
 - `Rating & Notes`: Rate your reading experience & Save your thoughts
 - `Marking`: Books can be marked e.g. to save whether you've already read them
