@@ -14,7 +14,7 @@ Archive your local library with the Alexandria Android App.
 - `data`: The data layer. Contains networking code for accessing the backend API & Persistence provider.
 
 ## Contributions
-This app would not be possible without the amazing [OpenLibrary project]((https://openlibrary.org/))!
+This app would not be possible without the amazing [OpenLibrary project](https://openlibrary.org/)!
 
 ## Screenshots
 ### Shelf
