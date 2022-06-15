@@ -1,7 +1,6 @@
 package com.diolkaee.alexandria.ui.capture.scan
 
 import android.Manifest
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -10,12 +9,12 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContract
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -29,8 +28,7 @@ import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 private const val LOG_TAG = "ScanActivity"
-private const val PERMISSIONS_REQUEST_CODE = 10
-private val REQUIRED_PERMISSIONS = listOf(Manifest.permission.CAMERA).toTypedArray()
+private const val CAMERA_PERMISSION = Manifest.permission.CAMERA
 
 class ScanActivityContract : ActivityResultContract<Unit, List<Long>>() {
     override fun createIntent(context: Context, input: Unit): Intent = Intent(context, ScanActivity::class.java)
@@ -55,11 +53,11 @@ class ScanActivity : AppCompatActivity() {
         setupViews()
         setupEvents()
 
-        // Request camera permissions
+        // Request camera permission
         if (allPermissionsGranted()) {
             startCamera()
         } else {
-            ActivityCompat.requestPermissions(this, REQUIRED_PERMISSIONS, PERMISSIONS_REQUEST_CODE)
+            requestPermissionLauncher.launch(CAMERA_PERMISSION)
         }
 
         cameraExecutor = Executors.newSingleThreadExecutor()
@@ -77,26 +75,6 @@ class ScanActivity : AppCompatActivity() {
 
     private fun setupEvents() = with(binding) {
         setOnFinish { finishActivity() }
-    }
-
-    @SuppressLint("MissingSuperCall")
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
-    ) {
-        if (requestCode == PERMISSIONS_REQUEST_CODE) {
-            if (allPermissionsGranted()) {
-                startCamera()
-            } else {
-                Toast.makeText(
-                    this,
-                    R.string.scan_permission_denied,
-                    Toast.LENGTH_SHORT
-                ).show()
-                finish()
-            }
-        }
     }
 
     override fun onDestroy() {
@@ -139,8 +117,21 @@ class ScanActivity : AppCompatActivity() {
         }, ContextCompat.getMainExecutor(this))
     }
 
-    private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
-        ContextCompat.checkSelfPermission(baseContext, it) == PackageManager.PERMISSION_GRANTED
+    private fun allPermissionsGranted() =
+        ContextCompat.checkSelfPermission(baseContext, CAMERA_PERMISSION) == PackageManager.PERMISSION_GRANTED
+
+
+    private val requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) {
+        if (allPermissionsGranted()) {
+            startCamera()
+        } else {
+            Toast.makeText(
+                this,
+                R.string.scan_permission_denied,
+                Toast.LENGTH_SHORT
+            ).show()
+            finish()
+        }
     }
 
     private fun finishActivity() {
