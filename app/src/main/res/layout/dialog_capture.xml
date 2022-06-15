@@ -28,7 +28,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:paddingHorizontal="@dimen/activity_margin_horizontal"
         android:paddingVertical="@dimen/activity_margin_vertical"
         tools:theme="?bottomSheetDialogTheme">
@@ -67,7 +67,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/search_layout"
             app:layout_constraintTop_toTopOf="@id/search_layout"
-            app:layout_constraintBottom_toBottomOf="@id/search_layout"/>
+            app:layout_constraintBottom_toBottomOf="@id/search_layout" />
 
         <androidx.constraintlayout.widget.Barrier
             android:id="@+id/barrier"
@@ -77,27 +77,25 @@
             app:constraint_referenced_ids="search_layout, scan_button" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/results"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginTop="16dp"
-            android:paddingBottom="@dimen/list_bottom_padding"
+            android:paddingBottom="132dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/barrier"
             app:onResultClick="@{onAdd}"
             app:searchResults="@{searchResults}"
-            tools:itemCount="5"
+            app:layout_constraintTop_toBottomOf="@id/barrier"
+            tools:itemCount="18"
             tools:listitem="@layout/item_book_result" />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/action_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="@{onFinish}"
-            android:text="@string/capture_fab"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@string/capture_button_submit"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/results" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
