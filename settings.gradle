@@ -16,3 +16,4 @@ rootProject.name = "Alexandria"
 include ':app'
 include ':business'
 include ':data'
+include ':composeapp'

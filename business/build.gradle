@@ -4,11 +4,12 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    namespace "com.diolkaee.alexandria.business"
+    compileSdk 34
 
     defaultConfig {
         minSdk 21
-        targetSdk 32
+        targetSdk 34
 
         consumerProguardFiles "consumer-rules.pro"
     }
@@ -19,12 +20,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'consumer-rules.pro'
         }
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+    kotlin {
+        jvmToolchain(17)
     }
-    kotlinOptions {
-        jvmTarget = '1.8'
+    buildFeatures {
+        buildConfig true
     }
 }
 
