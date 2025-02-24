@@ -27,7 +27,7 @@ class ShelfFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         binding = FragmentShelfBinding.inflate(inflater, container, false)
         setupViews()

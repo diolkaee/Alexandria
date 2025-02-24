@@ -1,19 +1,19 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
-    id 'kotlin-kapt'
+    id 'com.google.devtools.ksp'
 }
 
 android {
-    namespace "com.diolkaee.alexandria.data"
+    namespace 'com.diolkaee.alexandria.data'
     compileSdk 34
 
     defaultConfig {
         minSdk 21
         targetSdk 34
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles "consumer-rules.pro"
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+        consumerProguardFiles 'consumer-rules.pro'
     }
 
     buildTypes {
@@ -32,28 +32,28 @@ dependencies {
     implementation "io.insert-koin:koin-core:$koin_version"
 
     // Networking
-    def retrofit_version = "2.10.0"
-    def okHttp_version = "4.12.0"
+    def retrofit_version = '2.10.0'
+    def okHttp_version = '4.12.0'
     api "com.squareup.retrofit2:retrofit:$retrofit_version" // passed to business module for exception handling
     implementation "com.squareup.okhttp3:okhttp:$okHttp_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okHttp_version"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
 
     // serialisation
-    def moshi_version = "1.15.1"
+    def moshi_version = '1.15.1'
     implementation "com.squareup.moshi:moshi:$moshi_version"
     implementation "com.squareup.moshi:moshi-adapters:$moshi_version"
-    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
+    ksp "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
 
     // persistence
-    def room_version = "2.6.1"
-    implementation("androidx.room:room-runtime:$room_version")
-    implementation("androidx.room:room-ktx:$room_version")
-    annotationProcessor("androidx.room:room-compiler:$room_version")
-    kapt("androidx.room:room-compiler:$room_version")
-    testImplementation("androidx.room:room-testing:$room_version")
+    def room_version = '2.6.1'
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+    ksp "androidx.room:room-compiler:$room_version"
+    testImplementation "androidx.room:room-testing:$room_version"
 
     // testing
     androidTestImplementation 'junit:junit:4.13.2'
-    androidTestImplementation "androidx.test.ext:junit:1.2.1"
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
 }

@@ -4,14 +4,14 @@ plugins {
 }
 
 android {
-    namespace "com.diolkaee.alexandria.business"
+    namespace 'com.diolkaee.alexandria.business'
     compileSdk 34
 
     defaultConfig {
         minSdk 21
         targetSdk 34
 
-        consumerProguardFiles "consumer-rules.pro"
+        consumerProguardFiles 'consumer-rules.pro'
     }
 
     buildTypes {
@@ -29,7 +29,7 @@ android {
 }
 
 dependencies {
-    implementation project(":data")
+    implementation project(':data')
 
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
 

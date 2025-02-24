@@ -12,7 +12,7 @@ interface ApiService {
     suspend fun getBooks(
         @Query("bibkeys") searchTerm: String,
         @Query("jscmd") resolution: String,
-        @Query("format") dataFormat: String
+        @Query("format") dataFormat: String,
     ): BookListData
 
     companion object {

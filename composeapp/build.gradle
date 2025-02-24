@@ -1,0 +1,83 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'org.jetbrains.kotlin.plugin.compose'
+}
+
+android {
+    namespace 'com.diolkaee.alexandria'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId 'com.diolkaee.alexandria'
+        minSdk 21
+        targetSdk 34
+        versionCode 1
+        versionName '1.0'
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += ['room.schemaLocation': '$projectDir/schemas'.toString()]
+            }
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            applicationIdSuffix '.beta'
+        }
+        release {
+            // TODO Configure signing for PlayStore release
+            signingConfig signingConfigs.debug
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    composeOptions {
+        // See https://developer.android.com/jetpack/androidx/releases/compose-kotlin
+        kotlinCompilerExtensionVersion = '1.5.14'
+    }
+    kotlin {
+        jvmToolchain(21)
+    }
+    buildFeatures {
+        compose = true
+    }
+}
+
+dependencies {
+    implementation project(':business')
+
+    // Compose (https://developer.android.com/jetpack/compose/bom/bom-mapping)
+    implementation platform('androidx.compose:compose-bom:2025.02.00')
+    implementation 'androidx.compose.ui:ui'
+    implementation 'androidx.compose.ui:ui-tooling-preview'
+    implementation 'androidx.compose.material3:material3'
+    debugImplementation 'androidx.compose.ui:ui-tooling'
+    debugImplementation 'androidx.compose.ui:ui-test-manifest'
+
+    // AndroidX (https://developer.android.com/jetpack/androidx/versions)
+    implementation 'androidx.core:core-ktx:1.15.0'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.8.7'
+    implementation 'androidx.lifecycle:lifecycle-runtime-compose:2.8.7'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.7'
+    implementation 'androidx.activity:activity-compose:1.10.0'
+    implementation 'androidx.navigation:navigation-compose:2.8.7'
+
+    // Dependency Injection (https://insert-koin.io/)
+    implementation "io.insert-koin:koin-android:$koin_version"
+    implementation "io.insert-koin:koin-androidx-compose:$koin_version"
+
+    // barcode analyzing
+    implementation 'com.google.mlkit:barcode-scanning:17.3.0'
+
+    // image loading
+    implementation 'io.coil-kt:coil-compose:2.6.0'
+
+    // Testing
+    testImplementation 'junit:junit:4.13.2'
+}

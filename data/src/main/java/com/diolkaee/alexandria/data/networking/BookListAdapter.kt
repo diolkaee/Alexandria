@@ -14,7 +14,7 @@ class BookListAdapter {
     @FromJson
     fun fromJson(
         jsonReader: JsonReader,
-        bookDelegate: JsonAdapter<BookData>
+        bookDelegate: JsonAdapter<BookData>,
     ): BookListData {
         val data = mutableListOf<BookData>()
 

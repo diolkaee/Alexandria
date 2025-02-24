@@ -18,7 +18,7 @@ val EXAMPLE_BOOKS = listOf(
         publisher = "Penguins Books",
         publicationYear = "2020",
         pageCount = 96,
-        thumbnailUrl = "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1631088473l/35031085._SY475_.jpg"
+        thumbnailUrl = "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1631088473l/35031085._SY475_.jpg",
     ),
     Book(
         isbn = 9781713326472,
@@ -26,6 +26,7 @@ val EXAMPLE_BOOKS = listOf(
         title = "The strange case of Dr. Jekyll and Mr. Hyde",
         publisher = "Penguins Books",
         publicationYear = "2019",
+        marked = true,
         pageCount = 110,
     ),
     Book(
@@ -43,8 +44,8 @@ val EXAMPLE_BOOKS = listOf(
         publisher = "Penguins Books",
         publicationYear = "2021",
         pageCount = 114,
-        thumbnailUrl = "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1490528560l/4671._SY475_.jpg"
-    )
+        thumbnailUrl = "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1490528560l/4671._SY475_.jpg",
+    ),
 )
 
 data class Book(
@@ -58,7 +59,7 @@ data class Book(
     val thumbnailUrl: String? = null,
     // Ranges between 0.0f and 5.0f, using @FloatRange would require Androidx dependencies
     val rating: Float? = null,
-    val notes: String? = null
+    val notes: String? = null,
 )
 
 data class Author(val firstName: String?, val surname: String) {

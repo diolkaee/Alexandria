@@ -31,7 +31,7 @@ fun ViewPager2.setBooks(books: List<Book>) {
             CompositePageTransformer().apply {
                 addTransformer(multiPageTransformer)
                 addTransformer(shrinkTransformer)
-            }
+            },
         )
 
         val itemDecoration = HorizontalMarginDecoration(context, R.dimen.viewpager_book_margin)
@@ -67,7 +67,7 @@ private class HorizontalMarginDecoration(context: Context, @DimenRes horizontalM
         outRect: Rect,
         view: View,
         parent: RecyclerView,
-        state: RecyclerView.State
+        state: RecyclerView.State,
     ) {
         outRect.left = horizontalMarginInPx
         outRect.right = horizontalMarginInPx

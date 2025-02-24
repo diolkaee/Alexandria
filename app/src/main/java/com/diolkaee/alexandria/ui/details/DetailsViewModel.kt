@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 
 class DetailsViewModel(
     private val isbn: Long,
-    private val bookRepository: BookRepository
+    private val bookRepository: BookRepository,
 ) : ViewModel() {
     private val _book = MutableStateFlow<Book?>(null)
     val book: StateFlow<Book?> = _book

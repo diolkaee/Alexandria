@@ -1,19 +1,49 @@
 build:
   maxIssues: 0
 
+naming:
+  FunctionNaming:
+    # Composable functions have uppercase names
+    ignoreAnnotated:
+      - Composable
+  ConstructorParameterNaming:
+    # DTOs use snake_case
+    ignoreAnnotated:
+      - JsonClass
+  EnumNaming:
+    # DTOs use snake_case
+    ignoreAnnotated:
+      - JsonClass
+
 complexity:
-  TooManyFunctions:
-    # prefer many small functions instead of few large functions (needs to be looked at on a case by case basis)
-    active: false
   ComplexCondition:
     # longer conditions are okay, as long as they are still readable
     threshold: 5
+  LongMethod:
+    threshold: 85
+    ignoreAnnotated:
+      - Composable
+  TooManyFunctions:
+    # prefer small functions instead of few large functions (needs to be looked at on a case by case basis)
+    active: false
+    ignoreAnnotatedFunctions:
+      - Preview
+      - RifPreview
+      - RifScreenPreview
 
 formatting:
   MaximumLineLength:
-    # use style rule (ktlint) instead
+    # Use style rule instead
     active: false
-  NoWildcardImports:
+  FinalNewline:
+    # This is just annoying
+    active: false
+  TrailingCommaOnCallSite:
+    active: true
+  TrailingCommaOnDeclarationSite:
+    active: true
+  EnumEntryNameCase:
+    # DTOs use snake_case, otherwise we use EnumNaming rule
     active: false
 
 exceptions:
@@ -21,23 +51,17 @@ exceptions:
     # allow generic error handling to prevent rare exceptions crashing the app
     active: false
 
-# This configures ktlint
 style:
-  ForbiddenComment:
-    # allow TODOs for postponing unspecified behavior
-    values:
-      - 'FIXME'
   MaxLineLength:
     maxLineLength: 120
-    # tests have descriptive long names
-    excludes: &testFolders
-      - '**/test/**'
-      - '**/androidTest/**'
+  NewLineAtEndOfFile:
+    active: false
   MagicNumber:
-    # this is fine, e.g. for accessing by index
+    # This is fine, e.g. for accessing by index
     active: false
-  ReturnCount:
-    # allow guard pattern (early returns)
-    active: false
-  WildcardImport:
-    active: false
+  UnusedPrivateMember:
+    # Keep composable previews
+    ignoreAnnotated:
+      - Preview
+      - AlexandriaPreview
+      - AlexandriaScreenPreview

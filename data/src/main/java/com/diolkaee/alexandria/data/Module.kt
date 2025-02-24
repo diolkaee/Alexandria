@@ -18,7 +18,7 @@ val dataModule = module {
     single {
         OkHttpClient.Builder()
             .addInterceptor(
-                HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
+                HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY },
             )
             .build()
     }
@@ -46,7 +46,7 @@ val dataModule = module {
         Room.databaseBuilder(
             get(),
             BookDatabase::class.java,
-            BookDatabase.FILE_NAME
+            BookDatabase.FILE_NAME,
         )
             .build()
     }

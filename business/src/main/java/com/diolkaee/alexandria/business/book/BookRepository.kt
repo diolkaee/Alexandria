@@ -47,7 +47,7 @@ private fun BookData.toDomainObject() = Book(
     pageCount = number_of_pages,
     publicationYear = publish_date,
     publisher = publishers.first().name,
-    thumbnailUrl = cover?.medium
+    thumbnailUrl = cover?.medium,
 )
 
 private fun BookEntity.toDomainObject() = Book(

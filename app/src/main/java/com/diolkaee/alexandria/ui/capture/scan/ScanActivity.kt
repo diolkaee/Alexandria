@@ -102,7 +102,7 @@ class ScanActivity : AppCompatActivity() {
                         cameraExecutor,
                         BarcodeScanner { isbn ->
                             viewModel.searchBooks(isbn)
-                        }
+                        },
                     )
                 }
 
@@ -127,7 +127,7 @@ class ScanActivity : AppCompatActivity() {
             Toast.makeText(
                 this,
                 R.string.scan_permission_denied,
-                Toast.LENGTH_SHORT
+                Toast.LENGTH_SHORT,
             ).show()
             finish()
         }
