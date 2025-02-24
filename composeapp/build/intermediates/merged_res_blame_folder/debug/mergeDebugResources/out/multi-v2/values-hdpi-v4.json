@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.diolkaee.alexandria.composeapp-mergeDebugResources-71:/values-hdpi-v4/values-hdpi-v4.xml",
+            "map": [
+                {
+                    "source": "/Users/eike.meyer/.gradle/caches/transforms-3/5039c509273ab21b7b33ab10b0b9785c/transformed/appcompat-1.6.1/res/values-hdpi-v4/values-hdpi-v4.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "6",
+                        "endColumns": "13",
+                        "endOffsets": "327"
+                    }
+                }
+            ]
+        }
+    ]
+}

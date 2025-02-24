@@ -10,9 +10,9 @@ buildscript {
 }
 
 plugins {
-    id 'com.android.application' version '8.3.2' apply false
-    id 'com.android.library' version '8.3.2' apply false
-    id 'org.jetbrains.kotlin.android' version '1.9.23' apply false
+    id 'com.android.application' version '8.7.2' apply false
+    id 'com.android.library' version '8.7.2' apply false
+    id 'org.jetbrains.kotlin.android' version '2.1.0' apply false
     id 'io.gitlab.arturbosch.detekt' version "$detekt_version"
 }
 
@@ -23,7 +23,7 @@ subprojects {
     }
 
     detekt {
+        config.setFrom(rootProject.files('detekt.yml'))
         buildUponDefaultConfig = true
-        config = rootProject.files('detekt.yml')
     }
 }

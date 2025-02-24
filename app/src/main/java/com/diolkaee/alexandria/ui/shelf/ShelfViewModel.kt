@@ -34,8 +34,10 @@ class ShelfViewModel(private val bookRepository: BookRepository) : ViewModel() {
     val layout: StateFlow<ShelfLayout> = _layout
 
     init {
-        if (BuildConfig.DEBUG) viewModelScope.launch {
-            EXAMPLE_BOOKS.forEach { bookRepository.insert(it) }
+        if (BuildConfig.DEBUG) {
+            viewModelScope.launch {
+                EXAMPLE_BOOKS.forEach { bookRepository.insert(it) }
+            }
         }
     }
 
@@ -50,7 +52,9 @@ class ShelfViewModel(private val bookRepository: BookRepository) : ViewModel() {
     fun setQuery(query: String?) {
         val searchFilter = if (query.isNullOrBlank()) {
             { true }
-        } else { book: Book? -> book?.contains(query) ?: true }
+        } else {
+            { book: Book? -> book?.contains(query) ?: true }
+        }
 
         _bookFilter.value = searchFilter
     }

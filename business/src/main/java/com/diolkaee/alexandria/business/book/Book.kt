@@ -63,7 +63,10 @@ data class Book(
 
 data class Author(val firstName: String?, val surname: String) {
     override fun toString(): String {
-        return if (firstName != null) "$firstName $surname"
-        else surname
+        return if (firstName != null) {
+            "$firstName $surname"
+        } else {
+            surname
+        }
     }
 }

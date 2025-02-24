@@ -1,0 +1,4 @@
+com.diolkaee.alexandria.test.composeapp-androidTest-0 /Users/eike.meyer/Documents/Alexandria/composeapp/build/generated/res/resValues/androidTest/debug
+com.diolkaee.alexandria.test.composeapp-mergeDebugAndroidTestResources-1 /Users/eike.meyer/Documents/Alexandria/composeapp/build/intermediates/incremental/debugAndroidTest/mergeDebugAndroidTestResources/merged.dir
+com.diolkaee.alexandria.test.composeapp-mergeDebugAndroidTestResources-2 /Users/eike.meyer/Documents/Alexandria/composeapp/build/intermediates/incremental/debugAndroidTest/mergeDebugAndroidTestResources/stripped.dir
+com.diolkaee.alexandria.test.composeapp-debugAndroidTest-3 /Users/eike.meyer/Documents/Alexandria/composeapp/build/intermediates/merged_res/debugAndroidTest/mergeDebugAndroidTestResources

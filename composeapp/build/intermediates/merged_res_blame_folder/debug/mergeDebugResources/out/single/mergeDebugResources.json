@@ -1,0 +1,86 @@
+[
+    {
+        "merged": "/Users/eike.meyer/.gradle/daemon/8.4/com.diolkaee.alexandria.composeapp-debug-73:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "/Users/eike.meyer/.gradle/daemon/8.4/com.diolkaee.alexandria.composeapp-main-75:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "/Users/eike.meyer/.gradle/daemon/8.4/com.diolkaee.alexandria.composeapp-debug-73:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "/Users/eike.meyer/.gradle/daemon/8.4/com.diolkaee.alexandria.composeapp-main-75:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/eike.meyer/.gradle/daemon/8.4/com.diolkaee.alexandria.composeapp-debug-73:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/eike.meyer/.gradle/daemon/8.4/com.diolkaee.alexandria.composeapp-main-75:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/eike.meyer/.gradle/daemon/8.4/com.diolkaee.alexandria.composeapp-debug-73:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "/Users/eike.meyer/.gradle/daemon/8.4/com.diolkaee.alexandria.composeapp-main-75:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.diolkaee.alexandria.composeapp-debug-73:/drawable_ic_camera.xml.flat",
+        "source": "com.diolkaee.alexandria.composeapp-main-75:/drawable/ic_camera.xml"
+    },
+    {
+        "merged": "/Users/eike.meyer/.gradle/daemon/8.4/com.diolkaee.alexandria.composeapp-debug-73:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "/Users/eike.meyer/.gradle/daemon/8.4/com.diolkaee.alexandria.composeapp-main-75:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "/Users/eike.meyer/.gradle/daemon/8.4/com.diolkaee.alexandria.composeapp-debug-73:/drawable-mdpi_ic_launcher_foreground.png.flat",
+        "source": "/Users/eike.meyer/.gradle/daemon/8.4/com.diolkaee.alexandria.composeapp-pngs-69:/drawable-mdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "/Users/eike.meyer/.gradle/daemon/8.4/com.diolkaee.alexandria.composeapp-debug-73:/drawable-xxxhdpi_ic_launcher_foreground.png.flat",
+        "source": "/Users/eike.meyer/.gradle/daemon/8.4/com.diolkaee.alexandria.composeapp-pngs-69:/drawable-xxxhdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "/Users/eike.meyer/.gradle/daemon/8.4/com.diolkaee.alexandria.composeapp-debug-73:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/eike.meyer/.gradle/daemon/8.4/com.diolkaee.alexandria.composeapp-main-75:/mipmap-xhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/eike.meyer/.gradle/daemon/8.4/com.diolkaee.alexandria.composeapp-debug-73:/drawable-xxhdpi_ic_launcher_foreground.png.flat",
+        "source": "/Users/eike.meyer/.gradle/daemon/8.4/com.diolkaee.alexandria.composeapp-pngs-69:/drawable-xxhdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "/Users/eike.meyer/.gradle/daemon/8.4/com.diolkaee.alexandria.composeapp-debug-73:/drawable_ic_launcher_background.xml.flat",
+        "source": "/Users/eike.meyer/.gradle/daemon/8.4/com.diolkaee.alexandria.composeapp-main-75:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "/Users/eike.meyer/.gradle/daemon/8.4/com.diolkaee.alexandria.composeapp-debug-73:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "/Users/eike.meyer/.gradle/daemon/8.4/com.diolkaee.alexandria.composeapp-main-75:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/eike.meyer/.gradle/daemon/8.4/com.diolkaee.alexandria.composeapp-debug-73:/drawable-anydpi-v24_ic_launcher_foreground.xml.flat",
+        "source": "/Users/eike.meyer/.gradle/daemon/8.4/com.diolkaee.alexandria.composeapp-pngs-69:/drawable-anydpi-v24/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "/Users/eike.meyer/.gradle/daemon/8.4/com.diolkaee.alexandria.composeapp-debug-73:/drawable-xhdpi_ic_launcher_foreground.png.flat",
+        "source": "/Users/eike.meyer/.gradle/daemon/8.4/com.diolkaee.alexandria.composeapp-pngs-69:/drawable-xhdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "/Users/eike.meyer/.gradle/daemon/8.4/com.diolkaee.alexandria.composeapp-debug-73:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "/Users/eike.meyer/.gradle/daemon/8.4/com.diolkaee.alexandria.composeapp-main-75:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/eike.meyer/.gradle/daemon/8.4/com.diolkaee.alexandria.composeapp-debug-73:/drawable-hdpi_ic_launcher_foreground.png.flat",
+        "source": "/Users/eike.meyer/.gradle/daemon/8.4/com.diolkaee.alexandria.composeapp-pngs-69:/drawable-hdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "/Users/eike.meyer/.gradle/daemon/8.4/com.diolkaee.alexandria.composeapp-debug-73:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/eike.meyer/.gradle/daemon/8.4/com.diolkaee.alexandria.composeapp-main-75:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/eike.meyer/.gradle/daemon/8.4/com.diolkaee.alexandria.composeapp-debug-73:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/eike.meyer/.gradle/daemon/8.4/com.diolkaee.alexandria.composeapp-main-75:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/eike.meyer/.gradle/daemon/8.4/com.diolkaee.alexandria.composeapp-debug-73:/drawable-ldpi_ic_launcher_foreground.png.flat",
+        "source": "/Users/eike.meyer/.gradle/daemon/8.4/com.diolkaee.alexandria.composeapp-pngs-69:/drawable-ldpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "/Users/eike.meyer/.gradle/daemon/8.4/com.diolkaee.alexandria.composeapp-debug-73:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/eike.meyer/.gradle/daemon/8.4/com.diolkaee.alexandria.composeapp-main-75:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/eike.meyer/.gradle/daemon/8.4/com.diolkaee.alexandria.composeapp-debug-73:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "/Users/eike.meyer/.gradle/daemon/8.4/com.diolkaee.alexandria.composeapp-main-75:/mipmap-mdpi/ic_launcher.webp"
+    }
+]

@@ -37,9 +37,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    // Required for AGP 8+
     kotlin {
-        jvmToolchain(17)
+        jvmToolchain(21)
     }
     buildFeatures {
         dataBinding = true

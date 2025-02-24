@@ -120,7 +120,6 @@ class ScanActivity : AppCompatActivity() {
     private fun allPermissionsGranted() =
         ContextCompat.checkSelfPermission(baseContext, CAMERA_PERMISSION) == PackageManager.PERMISSION_GRANTED
 
-
     private val requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) {
         if (allPermissionsGranted()) {
             startCamera()
