@@ -10,10 +10,10 @@ object ShelfNavigation {
     const val ROUTE = "shelf"
 }
 
-fun NavGraphBuilder.shelfScreen() {
+fun NavGraphBuilder.shelfScreen(onShowScan: () -> Unit) {
     composable(ShelfNavigation.ROUTE) {
         val viewModel = koinViewModel<ShelfViewModel>()
         val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-        ShelfScreen(uiState = uiState, onSearchQueryChange = viewModel::setQuery)
+        ShelfScreen(uiState = uiState, onSearchQueryChange = viewModel::setQuery, onShowScan = onShowScan)
     }
 }

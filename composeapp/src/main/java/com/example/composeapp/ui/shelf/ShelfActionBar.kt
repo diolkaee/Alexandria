@@ -15,6 +15,7 @@ import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.diolkaee.alexandria.R
@@ -26,13 +27,18 @@ fun ShelfActionBar(
     query: String,
     onQueryChange: (String) -> Unit,
     onActionButtonClick: () -> Unit,
+    onScanButtonClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
         SearchBar(query, onQueryChange, Modifier.weight(1f))
         Spacer(Modifier.width(16.dp))
+        IconButton(modifier = Modifier.padding(4.dp), onClick = onScanButtonClick) {
+            Icon(painterResource(R.drawable.ic_camera), contentDescription = "Open book scanner")
+        }
+        Spacer(Modifier.width(16.dp))
         IconButton(modifier = Modifier.padding(4.dp), onClick = onActionButtonClick) {
-            Icon(Icons.Default.Build, contentDescription = null)
+            Icon(Icons.Default.Build, contentDescription = "Change layout")
         }
     }
 }
@@ -61,6 +67,11 @@ private fun SearchBar(
 @Composable
 private fun Preview() {
     AlexandriaTheme {
-        ShelfActionBar(query = "", onQueryChange = {}, onActionButtonClick = {})
+        ShelfActionBar(
+            query = "",
+            onQueryChange = {},
+            onActionButtonClick = {},
+            onScanButtonClick = {},
+        )
     }
 }

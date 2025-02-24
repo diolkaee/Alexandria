@@ -1,6 +1,5 @@
 package com.example.composeapp.ui.shelf
 
-import android.util.Log
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -32,7 +31,11 @@ private enum class ShelfScreenLayout {
 }
 
 @Composable
-fun ShelfScreen(uiState: ShelfState, onSearchQueryChange: (String) -> Unit) {
+fun ShelfScreen(
+    uiState: ShelfState,
+    onSearchQueryChange: (String) -> Unit,
+    onShowScan: () -> Unit,
+) {
     var shelfLayout by remember { mutableStateOf(Shelf) }
     var pagerPosition by remember { mutableIntStateOf(0) }
 
@@ -50,6 +53,7 @@ fun ShelfScreen(uiState: ShelfState, onSearchQueryChange: (String) -> Unit) {
             query = uiState.query,
             onQueryChange = onSearchQueryChange,
             onActionButtonClick = { shelfLayout = shelfLayout.next() },
+            onScanButtonClick = onShowScan,
         )
         if (shelfLayout != Grid) {
             ShelfList(
@@ -69,6 +73,7 @@ private fun Preview() {
         ShelfScreen(
             uiState = ShelfState(books = EXAMPLE_BOOKS),
             onSearchQueryChange = {},
+            onShowScan = {},
         )
     }
 }
