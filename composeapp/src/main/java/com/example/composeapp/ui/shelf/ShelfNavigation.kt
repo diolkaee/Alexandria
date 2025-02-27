@@ -14,6 +14,11 @@ fun NavGraphBuilder.shelfScreen(onShowScan: () -> Unit) {
     composable(ShelfNavigation.ROUTE) {
         val viewModel = koinViewModel<ShelfViewModel>()
         val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-        ShelfScreen(uiState = uiState, onSearchQueryChange = viewModel::setQuery, onShowScan = onShowScan)
+
+        ShelfScreen(
+            uiState = uiState,
+            onSearchQueryChange = viewModel::setQuery,
+            onShowScan = onShowScan,
+        )
     }
 }

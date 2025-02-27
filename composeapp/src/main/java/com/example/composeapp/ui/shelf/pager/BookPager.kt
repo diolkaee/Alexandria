@@ -55,7 +55,7 @@ fun BookPager(
         state = pagerState,
         key = { books[it].isbn },
         userScrollEnabled = false,
-        beyondBoundsPageCount = 1,
+        beyondViewportPageCount = 1,
         pageSize = PageSize.Fixed(200.dp),
         pageSpacing = 40.dp,
         contentPadding = PaddingValues(start = 80.dp, top = 40.dp, bottom = 40.dp),

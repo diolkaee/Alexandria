@@ -5,6 +5,7 @@
       <module name="Alexandria.app" target="21" />
       <module name="Alexandria.business" target="21" />
       <module name="Alexandria.data" target="21" />
+      <module name="Documents.Alexandria.composeapp" target="21" />
     </bytecodeTargetLevel>
   </component>
 </project>

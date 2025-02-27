@@ -173,6 +173,7 @@ attr font
 attr fontFamily
 attr fontProviderAuthority
 attr fontProviderCerts
+attr fontProviderFallbackQuery
 attr fontProviderFetchStrategy
 attr fontProviderFetchTimeout
 attr fontProviderPackage
@@ -195,7 +196,6 @@ attr iconifiedByDefault
 attr imageAspectRatio
 attr imageAspectRatioAdjust
 attr imageButtonStyle
-attr implementationMode
 attr indeterminateProgressStyle
 attr initialActivityCount
 attr isLightTheme
@@ -262,7 +262,6 @@ attr ratingBarStyleIndicator
 attr ratingBarStyleSmall
 attr restoreState
 attr route
-attr scaleType
 attr scopeUris
 attr searchHintIcon
 attr searchIcon
@@ -789,7 +788,6 @@ id checked
 id chronometer
 id coil_request_manager
 id collapseActionView
-id compatible
 id compose_view_saveable_id_tag
 id consume_window_insets_tag
 id content
@@ -806,15 +804,10 @@ id edit_text_id
 id end
 id expand_activities_button
 id expanded_menu
-id fillCenter
-id fillEnd
-id fillStart
-id fitCenter
-id fitEnd
-id fitStart
 id forever
 id fragment_container_view_tag
 id group_divider
+id hide_graphics_layer_in_inspector_tag
 id hide_ime_id
 id hide_in_inspector_tag
 id home
@@ -846,7 +839,6 @@ id notification_main_column_container
 id off
 id on
 id parentPanel
-id performance
 id pooling_container_listener_holder_tag
 id progress_circular
 id progress_horizontal
@@ -924,6 +916,7 @@ integer abc_config_activityShortDur
 integer cancel_button_image_alpha
 integer config_tooltipAnimTime
 integer google_play_services_version
+integer m3c_window_layout_in_display_cutout_mode
 integer status_bar_notification_info_maxnum
 interpolator btn_checkbox_checked_mtrl_animation_interpolator_0
 interpolator btn_checkbox_checked_mtrl_animation_interpolator_1
@@ -1075,6 +1068,7 @@ string m3c_date_range_picker_title
 string m3c_dialog
 string m3c_dropdown_menu_collapsed
 string m3c_dropdown_menu_expanded
+string m3c_dropdown_menu_toggle
 string m3c_search_bar_search
 string m3c_snackbar_dismiss
 string m3c_suggestions_available
@@ -1094,14 +1088,15 @@ string m3c_tooltip_long_press_label
 string m3c_tooltip_pane_description
 string navigation_menu
 string not_selected
-string off
-string on
 string range_end
 string range_start
 string search_menu_title
 string selected
 string shelf_list_marked
 string shelf_search_label
+string state_empty
+string state_off
+string state_on
 string status_bar_notification_info_overflow
 string switch_role
 string tab
@@ -1270,6 +1265,8 @@ style Base_Widget_AppCompat_TextView_SpinnerItem
 style Base_Widget_AppCompat_Toolbar
 style Base_Widget_AppCompat_Toolbar_Button_Navigation
 style DialogWindowTheme
+style EdgeToEdgeFloatingDialogTheme
+style EdgeToEdgeFloatingDialogWindowTheme
 style FloatingDialogTheme
 style FloatingDialogWindowTheme
 style Platform_AppCompat
@@ -1484,7 +1481,7 @@ styleable CheckedTextView android_checkMark checkMarkCompat checkMarkTint checkM
 styleable ColorStateListItem android_color android_alpha android_lStar alpha lStar
 styleable CompoundButton android_button buttonCompat buttonTint buttonTintMode
 styleable DrawerArrowToggle arrowHeadLength arrowShaftLength barLength color drawableSize gapBetweenBars spinBars thickness
-styleable FontFamily fontProviderAuthority fontProviderCerts fontProviderFetchStrategy fontProviderFetchTimeout fontProviderPackage fontProviderQuery fontProviderSystemFontFamily
+styleable FontFamily fontProviderAuthority fontProviderCerts fontProviderFallbackQuery fontProviderFetchStrategy fontProviderFetchTimeout fontProviderPackage fontProviderQuery fontProviderSystemFontFamily
 styleable FontFamilyFont android_font android_fontWeight android_fontStyle android_ttcIndex android_fontVariationSettings font fontStyle fontVariationSettings fontWeight ttcIndex
 styleable Fragment android_name android_id android_tag
 styleable FragmentContainerView android_name android_tag
@@ -1506,7 +1503,6 @@ styleable NavInclude graph
 styleable Navigator android_label android_id route
 styleable PopupWindow android_popupBackground android_popupAnimationStyle overlapAnchor
 styleable PopupWindowBackgroundState state_above_anchor
-styleable PreviewView implementationMode scaleType
 styleable RecycleListView paddingBottomNoButtons paddingTopNoTitle
 styleable SearchView android_focusable android_maxWidth android_inputType android_imeOptions closeIcon commitIcon defaultQueryHint goIcon iconifiedByDefault layout queryBackground queryHint searchHintIcon searchIcon submitBackground suggestionRowLayout voiceIcon
 styleable SignInButton buttonSize colorScheme scopeUris

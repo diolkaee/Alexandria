@@ -6,7 +6,7 @@
 
     <uses-sdk
         android:minSdkVersion="21"
-        android:targetSdkVersion="34" />
+        android:targetSdkVersion="35" />
 
     <uses-feature android:name="android.hardware.camera.any" />
 
@@ -40,16 +40,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="androidx.activity.ComponentActivity"
-            android:exported="true" />
-        <activity
-            android:name="androidx.compose.ui.tooling.PreviewActivity"
-            android:exported="true" />
-        <!--
-        Service for holding metadata. Cannot be instantiated.
-        Metadata will be merged from other manifests.
-        -->
+
         <service
             android:name="androidx.camera.core.impl.MetadataHolderService"
             android:enabled="false"
@@ -58,6 +49,14 @@
                 android:name="androidx.camera.core.impl.MetadataHolderService.DEFAULT_CONFIG_PROVIDER"
                 android:value="androidx.camera.camera2.Camera2Config$DefaultProvider" />
         </service>
+
+        <activity
+            android:name="androidx.activity.ComponentActivity"
+            android:exported="true" />
+        <activity
+            android:name="androidx.compose.ui.tooling.PreviewActivity"
+            android:exported="true" />
+
         <service
             android:name="com.google.mlkit.common.internal.MlKitComponentDiscoveryService"
             android:directBootAware="true"
@@ -103,11 +102,6 @@
                 android:value="androidx.startup" />
         </provider>
 
-        <service
-            android:name="androidx.room.MultiInstanceInvalidationService"
-            android:directBootAware="true"
-            android:exported="false" />
-
         <receiver
             android:name="androidx.profileinstaller.ProfileInstallReceiver"
             android:directBootAware="false"
@@ -128,6 +122,10 @@
             </intent-filter>
         </receiver>
 
+        <service
+            android:name="androidx.room.MultiInstanceInvalidationService"
+            android:directBootAware="true"
+            android:exported="false" />
         <service
             android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
             android:exported="false" >

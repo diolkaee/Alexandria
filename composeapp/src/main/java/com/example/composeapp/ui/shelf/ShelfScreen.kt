@@ -3,6 +3,7 @@ package com.example.composeapp.ui.shelf
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -39,7 +40,11 @@ fun ShelfScreen(
     var shelfLayout by remember { mutableStateOf(Shelf) }
     var pagerPosition by remember { mutableIntStateOf(0) }
 
-    Column(Modifier.animateContentSize()) {
+    Column(
+        Modifier
+            .navigationBarsPadding()
+            .animateContentSize(),
+    ) {
         if (shelfLayout != List) {
             BookPager(
                 modifier = Modifier.fillMaxWidth(),
