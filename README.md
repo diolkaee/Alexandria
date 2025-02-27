@@ -11,8 +11,14 @@ Archive your local library with the Alexandria Android App.
 
 ## Modules
 - `app`: The application or presentation layer. Contains layouts, fragments, viewmodels, databinding adapters, resources, etc.
+- `composeapp`: The application layer, realized in Jetpack Compose
 - `business`: The business or domain layer. Contains repositories and mediates between `app` and `data`.
 - `data`: The data layer. Contains networking code for accessing the backend API & Persistence provider.
+
+## Build
+The Alexandria app supports both an XML UI and a Jetpack Compose UI.
+To build the XML UI, run `./gradlew app`.
+To build the Jetpack Compose UI, run `./gradlew composeapp`.
 
 ## Contributions
 This app would not be possible without the amazing [OpenLibrary project](https://openlibrary.org/)!
