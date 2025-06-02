@@ -1,5 +1,6 @@
 # Alexandria
 Archive your local library with the Alexandria Android App.
+This is a technical showcase, please don't mind the optics.
 
 ## Features
 - `Archive`: Archive your books by scanning their barcode or entering an ISBN
