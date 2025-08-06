@@ -28,7 +28,7 @@ class DetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentDetailsBinding
     private val args: DetailsFragmentArgs by navArgs()
-    private val viewModel: DetailsViewModel by viewModel(parameters = { parametersOf(args.isbn) })
+    private val viewModel: DetailsViewModel by viewModel { parametersOf(args.isbn) }
     private val navController: NavController
         get() = findNavController()
 
@@ -46,7 +46,7 @@ class DetailsFragment : Fragment() {
                 viewModel.book.collect {
                     binding.book = it
                     if (it != null) {
-                        setMarkedMenuItem(it.marked)
+                        setToolbarFlag(it.flagged)
                     }
                 }
             }
@@ -54,12 +54,12 @@ class DetailsFragment : Fragment() {
     }
 
     private fun setupEvents() = with(binding) {
-        setOnRate { viewModel.setRating(it) }
+        setOnRate(viewModel::setRating)
         setOnNavigateUp { navController.navigateUp() }
         setOnEditNotes { openEditNotesDialog() }
         toolbar.setOnMenuItemClickListener { item ->
             when (item.itemId) {
-                R.id.mark -> viewModel.toggleMark()
+                R.id.flag -> viewModel.toggleFlag()
                 R.id.delete -> openDeleteDialog()
                 else -> throw IllegalArgumentException("No menu item with id: ${item.itemId}")
             }
@@ -97,10 +97,10 @@ class DetailsFragment : Fragment() {
     /** This cannot be done via checked state:
      * https://stackoverflow.com/questions/6683186/menuitems-checked-state-is-not-shown-correctly-by-its-icon
      */
-    private fun setMarkedMenuItem(isMarked: Boolean) {
-        val markMenuItem = binding.toolbar.menu.findItem(R.id.mark)
-        val iconId = if (isMarked) R.drawable.ic_check else R.drawable.ic_awesome
-        markMenuItem.icon = ResourcesCompat.getDrawable(resources, iconId, null)
+    private fun setToolbarFlag(flagged: Boolean) {
+        val flagMenuItem = binding.toolbar.menu.findItem(R.id.flag)
+        val iconId = if (flagged) R.drawable.ic_check else R.drawable.ic_awesome
+        flagMenuItem.icon = ResourcesCompat.getDrawable(resources, iconId, null)
     }
 
     private fun deleteBookAndNavigateUp() {

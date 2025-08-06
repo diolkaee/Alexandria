@@ -38,7 +38,7 @@ private val TEST_ENTITY = BookEntity(
     publisher = "Penguin Books",
     pageCount = 304,
     thumbnailUrl = null,
-    marked = false,
+    flagged = false,
     rating = null,
     notes = null,
 )
@@ -51,7 +51,7 @@ private val TEST_BOOK = Book(
     publisher = "Penguin Books",
     pageCount = 304,
     thumbnailUrl = null,
-    marked = false,
+    flagged = false,
 )
 
 internal class BookRepositoryTest {
@@ -65,7 +65,7 @@ internal class BookRepositoryTest {
             coEvery { this@mockk.retrieveBooks(TEST_BOOK.isbn) } returns listOf(TEST_DATA)
         }
         localSource = mockk<BookDao>(relaxed = true) {
-            coEvery { this@mockk.get(TEST_BOOK.isbn) } returns TEST_ENTITY
+            coEvery { this@mockk.findByIsbn(TEST_BOOK.isbn) } returns TEST_ENTITY
             coEvery { this@mockk.getAll() } returns flowOf(listOf(TEST_ENTITY))
         }
         repository = BookRepository(remoteSource, localSource)

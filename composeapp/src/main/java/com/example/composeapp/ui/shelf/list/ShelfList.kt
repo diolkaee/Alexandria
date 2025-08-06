@@ -113,10 +113,10 @@ private fun BookItem(
             maxLines = 1,
         )
         Spacer(Modifier.weight(1f))
-        if (book.marked) {
+        if (book.flagged) {
             Icon(
                 imageVector = Icons.Default.Star,
-                contentDescription = stringResource(R.string.shelf_list_marked),
+                contentDescription = stringResource(R.string.shelf_list_flagged),
             )
         }
     }

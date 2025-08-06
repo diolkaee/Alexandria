@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">ComposeApp</string>
     <string name="shelf_search_label">Suche</string>
-    <string name="shelf_list_marked">favorisiert</string>
+    <string name="shelf_list_flagged">favorisiert</string>
 </resources>

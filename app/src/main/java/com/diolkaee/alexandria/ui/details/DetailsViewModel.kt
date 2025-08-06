@@ -36,9 +36,9 @@ class DetailsViewModel(
         }
     }
 
-    fun toggleMark() {
-        val wasMarked = _book.value?.marked == true
-        val updatedBook = _book.value?.copy(marked = !wasMarked)
+    fun toggleFlag() {
+        val wasFlagged = _book.value?.flagged == true
+        val updatedBook = _book.value?.copy(flagged = !wasFlagged)
         if (updatedBook != null) {
             updateBook(updatedBook)
         }

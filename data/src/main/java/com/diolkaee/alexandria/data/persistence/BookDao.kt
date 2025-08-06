@@ -18,8 +18,8 @@ interface BookDao {
     @Delete
     suspend fun delete(book: BookEntity)
 
-    @Query("SELECT * FROM books WHERE isbn = :isbn")
-    suspend fun get(isbn: Long): BookEntity?
+    @Query("SELECT * FROM books WHERE isbn = :isbn LIMIT 1")
+    suspend fun findByIsbn(isbn: Long): BookEntity?
 
     @Query("SELECT * FROM books")
     fun getAll(): Flow<List<BookEntity>>

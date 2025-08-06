@@ -26,7 +26,7 @@
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:checked="@{book.marked}"
+            android:checked="@{book.flagged}"
             android:text="@{book.title}"
             app:drawableEndCompat="@drawable/switch_mark"
             app:layout_constraintStart_toStartOf="parent"

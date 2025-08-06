@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-data class SearchResult(val book: Book, val marked: Boolean = false)
+data class SearchResult(val book: Book, val flagged: Boolean = false)
 
 class CaptureViewModel(private val bookRepository: BookRepository) : ViewModel() {
     private val _searchResults = MutableStateFlow<List<SearchResult>>(emptyList())
@@ -17,16 +17,16 @@ class CaptureViewModel(private val bookRepository: BookRepository) : ViewModel()
 
     fun fetchBooks(isbn: Long) {
         viewModelScope.launch {
-            val results = bookRepository.fetch(isbn).map { SearchResult(it, marked = false) }
+            val results = bookRepository.fetch(isbn).map { SearchResult(it, flagged = false) }
             _searchResults.update { it.plus(results) }
         }
     }
 
-    fun toggleMarked(isbn: Long) {
+    fun toggleFlag(isbn: Long) {
         _searchResults.update {
             it.map { result ->
                 if (result.book.isbn == isbn) {
-                    result.copy(marked = !result.marked)
+                    result.copy(flagged = !result.flagged)
                 } else {
                     result
                 }
@@ -34,10 +34,10 @@ class CaptureViewModel(private val bookRepository: BookRepository) : ViewModel()
         }
     }
 
-    fun archiveMarkedBooks() = viewModelScope.launch {
-        val markedBooks = searchResults.value
-            .filter { it.marked }
+    fun archiveFlaggedBooks() = viewModelScope.launch {
+        val flaggedBooks = searchResults.value
+            .filter { it.flagged }
             .map { it.book }
-        bookRepository.insertAll(markedBooks)
+        bookRepository.insertAll(flaggedBooks)
     }
 }

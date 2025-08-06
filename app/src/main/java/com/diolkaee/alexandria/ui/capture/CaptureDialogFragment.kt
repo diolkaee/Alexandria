@@ -44,12 +44,12 @@ class CaptureDialogFragment : BottomSheetDialogFragment() {
     private fun setupEvents() = with(binding) {
         searchInput.onSubmit(::handleSearchInput)
         setOnScan { scanBookIntent.launch(Unit) }
-        setOnAdd { viewModel.toggleMarked(it.book.isbn) }
+        setOnAdd { viewModel.toggleFlag(it.book.isbn) }
         setOnFinish { finishDialog() }
     }
 
     private fun finishDialog() {
-        viewModel.archiveMarkedBooks().invokeOnCompletion { dismiss() }
+        viewModel.archiveFlaggedBooks().invokeOnCompletion { dismiss() }
     }
 
     private fun handleSearchInput(text: CharSequence?) {

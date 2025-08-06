@@ -10,7 +10,7 @@
     <string name="shelf_fab_content_description">Add Book</string>
     <string name="capture_input_hint">Search ISBN</string>
     <string name="capture_input_error">ISBNs must have 10 or 13 characters</string>
-    <string name="capture_button_submit">Archive marked items</string>
+    <string name="capture_button_submit">Archive flagged items</string>
     <string name="capture_item_content_description">Click to mark</string>
     <string name="scan_fab">Finish</string>
     <string name="scan_button_scan_content_description">Scan barcode</string>

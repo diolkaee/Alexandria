@@ -38,7 +38,7 @@ class BookRepository(
 
     suspend fun retrieve(isbn: Long) =
         if (!mocked) {
-            bookDao.get(isbn)?.toDomainObject()
+            bookDao.findByIsbn(isbn)?.toDomainObject()
         } else {
             EXAMPLE_BOOKS.find { it.isbn == isbn } ?: EXAMPLE_BOOKS.first()
         }
@@ -81,7 +81,7 @@ private fun BookEntity.toDomainObject() = Book(
     publisher = publisher,
     pageCount = pageCount,
     thumbnailUrl = thumbnailUrl,
-    marked = marked,
+    flagged = flagged,
     rating = rating,
     notes = notes,
 )
@@ -95,7 +95,7 @@ private fun Book.toEntity() = BookEntity(
     publisher = publisher,
     pageCount = pageCount,
     thumbnailUrl = thumbnailUrl,
-    marked = marked,
+    flagged = flagged,
     rating = rating,
     notes = notes,
 )

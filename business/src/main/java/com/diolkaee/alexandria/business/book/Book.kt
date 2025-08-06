@@ -26,7 +26,7 @@ val EXAMPLE_BOOKS = listOf(
         title = "The strange case of Dr. Jekyll and Mr. Hyde",
         publisher = "Penguins Books",
         publicationYear = "2019",
-        marked = true,
+        flagged = true,
         pageCount = 110,
     ),
     Book(
@@ -54,7 +54,7 @@ data class Book(
     val title: String,
     val publicationYear: String,
     val publisher: String,
-    val marked: Boolean = false,
+    val flagged: Boolean = false,
     val pageCount: Int?,
     val thumbnailUrl: String? = null,
     // Ranges between 0.0f and 5.0f, using @FloatRange would require Androidx dependencies

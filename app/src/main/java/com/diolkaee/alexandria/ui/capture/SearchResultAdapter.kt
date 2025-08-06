@@ -26,7 +26,7 @@ class SearchResultAdapter(private val clickListener: ResultClickListener) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val result = currentList[position]
         holder.binding.book = result.book
-        holder.binding.isAdded = result.marked
+        holder.binding.isAdded = result.flagged
         holder.binding.setOnClick { clickListener(result) }
     }
 }

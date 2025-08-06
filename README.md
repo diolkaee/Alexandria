@@ -7,7 +7,7 @@ This is a technical showcase, please don't mind the optics.
 - `Multiple Layouts`: Browse your library as a list, a book shelf or a combination of both
 - `Search`: Search your archive by Author or Title
 - `Rating & Notes`: Rate your reading experience & Save your thoughts
-- `Marking`: Books can be marked e.g. to save whether you've already read them
+- `Marking`: Books can be flagged e.g. to save whether you've already read them
 - `Accessibility`: The entire app is accessible by a screenreader
 
 ## Modules
